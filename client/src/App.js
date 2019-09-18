@@ -1,9 +1,7 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
 
 function App() {
-  
   const callApi = async () => {
     const response = await fetch("/api/test/test-data/");
     const body = await response.json();
