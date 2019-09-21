@@ -20,6 +20,7 @@ export default class Auth {
   }
 
   getProfile() {
+    console.log(this.profile);
     return this.profile;
   }
 
