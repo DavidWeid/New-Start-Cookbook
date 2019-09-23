@@ -1,11 +1,12 @@
 // import packages
 const express = require("express");
-const app = express();
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const logger = require("morgan");
 const routes = require("./routes");
 
+// create express app
+const app = express();
 // define ports
 const PORT = process.env.PORT || 3001;
 
