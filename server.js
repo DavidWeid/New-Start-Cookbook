@@ -1,5 +1,6 @@
 // import packages
 const express = require("express");
+const mongoose = require("mongoose");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const logger = require("morgan");
@@ -23,6 +24,13 @@ if (process.env.NODE_ENV === "production") {
 
 // hit routes
 app.use(routes);
+
+// connect to MongoDB
+// to connect to Heroku's MongoDB, use "mongodb://theCook:@u9Y5NfRrQSh94s@ds145146.mlab.com:45146/heroku_k8hczfsd"
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/cookbook-db", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
 
 app.listen(PORT, () =>
   console.log(`App is docked at port http://localhost:${PORT}`)
