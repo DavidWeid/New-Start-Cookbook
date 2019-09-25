@@ -1,7 +1,8 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import NavBar from "./components/NavBar";
-import Profile from "./components/Profile";
+import Home from "./components/Pages/Home";
+import Profile from "./components/Pages/Profile";
 import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
@@ -12,7 +13,7 @@ function App() {
           <NavBar />
         </header>
         <Switch>
-          <Route path="/" exact />
+          <Route path="/" exact component={Home} />
           <PrivateRoute path="/profile" component={Profile} />
         </Switch>
       </BrowserRouter>

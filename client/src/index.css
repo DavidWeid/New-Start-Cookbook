@@ -1,0 +1,83 @@
+* {
+  background-color: rgba(255, 0, 0, 0.2);
+}
+* * {
+  background-color: rgba(0, 255, 0, 0.2);
+}
+* * * {
+  background-color: rgba(0, 0, 255, 0.2);
+}
+* * * * {
+  background-color: rgba(255, 0, 255, 0.2);
+}
+* * * * * {
+  background-color: rgba(0, 255, 255, 0.2);
+}
+* * * * * * {
+  background-color: rgba(255, 255, 0, 0.2);
+}
+* * * * * * * {
+  background-color: rgba(255, 0, 0, 0.2);
+}
+* * * * * * * * {
+  background-color: rgba(0, 255, 0, 0.2);
+}
+* * * * * * * * * {
+  background-color: rgba(0, 0, 255, 0.2);
+}
+
+:root {
+  tab-size: 4;
+}
+
+html {
+  box-sizing: border-box;
+  /* em - size text bottoms out at; vw - how responsive to viwport width */
+  font-size: calc(0.95em + 0.75vw);
+  line-height: 1.15;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  font-family: sans-serif;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: 1.15;
+  margin: 0;
+}
+
+img,
+video,
+audio,
+iframe,
+embed {
+  display: block;
+  max-width: 100%;
+}
+
+img,
+video {
+  height: auto;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin-top: 0;
+}
