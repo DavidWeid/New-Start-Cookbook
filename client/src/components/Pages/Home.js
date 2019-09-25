@@ -1,10 +1,11 @@
 import React from "react";
+import "./Pages.css";
 
 const Home = () => {
 
   return (
     <main>
-      <h1>Home Page</h1>
+      <h1 className="text-color">Home Page</h1>
     </main>
   );
 };

@@ -28,6 +28,9 @@
 
 :root {
   tab-size: 4;
+  --main-light-color: #3A5A81;
+  --main-dark-color: #252131;
+  --main-accent-color: #D31336;
 }
 
 html {
