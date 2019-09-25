@@ -5,6 +5,7 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const logger = require("morgan");
 const routes = require("./routes");
+// const models = require("./models");
 
 // create express app
 const app = express();
@@ -31,6 +32,15 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/cookbook-db", {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
+// .then((res) => {
+//   console.log(res);
+//   const user1 = new models.User({
+//     username: "Troye",
+//     email: "troyeBoy@mailer.com"
+//   });
+//   user1.save().catch(err => console.log(err));
+// })
+// .catch(err => console.log(err));
 
 app.listen(PORT, () =>
   console.log(`App is docked at port http://localhost:${PORT}`)
