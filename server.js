@@ -54,7 +54,7 @@ db.once("open", function() {
     email: "djw@mailer.com"
   });
   const kristin = new models.User({
-    username: "kristin",
+    username: "Kristin",
     email: "kris@mailer.com"
   });
   usersArr.push(troye, eric, david, kristin);
