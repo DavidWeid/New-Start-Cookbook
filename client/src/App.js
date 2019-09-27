@@ -22,10 +22,12 @@ function App() {
   );
 }
 
-const NoMatch = ({location}) => (
+const NoMatch = ({ location }) => (
   <div>
-    <h1>No match for <code>{location.pathname}</code></h1>
+    <h1>
+      No match for <code>{location.pathname}</code>
+    </h1>
   </div>
-)
+);
 
 export default App;

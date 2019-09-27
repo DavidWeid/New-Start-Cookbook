@@ -126,10 +126,3 @@ const App = () => (
 );
 
 export default App;
-
-// const callApi = async () => {
-//   const response = await fetch("/api/test/test-data/");
-//   const body = await response.json();
-//   if (response.status !== 200) throw Error(body.message);
-//   return body;
-// };

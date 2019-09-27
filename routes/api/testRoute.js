@@ -9,7 +9,7 @@ router.get("/", (req, res) => {
 // route for ./api/test/test-data
 router.get("/test-data", async (req, res) => {
   try {
-    res.status(200).json({ people: testData });
+    res.status(200).json(testData);
   } catch (err) {
     res.status(400).json({
       message: "Some error occured",
@@ -24,9 +24,7 @@ router.get("/test-data/:id", async (req, res) => {
 
   try {
     let person = testData.find(person => person._id === id);
-    res.status(200).json({
-      people: [person]
-    });
+    res.status(200).json([person]);
   } catch (err) {
     res.status(400).json({
       message: "Some error occured",

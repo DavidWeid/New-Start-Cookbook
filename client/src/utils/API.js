@@ -1,7 +1,10 @@
 import Axios from "axios";
 
 export default {
-  testAPI() {
+  testAllPeople() {
     return Axios.get("/api/test/test-data");
+  },
+  testSinglePerson(personID) {
+    return Axios.get(`/api/test/test-data/${personID}`);
   }
 };

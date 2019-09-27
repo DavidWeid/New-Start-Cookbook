@@ -5,7 +5,7 @@ import "./Pages.css";
 const Home = () => {
   const [{ data, isLoading, isError }, doFetch] = DataAPI(
     "/api/test/test-data",
-    { people: [] }
+    []
   );
   const [personID, setPersonID] = useState(0);
 
@@ -27,12 +27,7 @@ const Home = () => {
         <div>Loading...</div>
       ) : (
         <ul>
-          {data.people[0].name === undefined ? (
-            <p>No user found</p>
-          ) : (
-            <div>User Found</div>
-          )}
-          {data.people.map(person => (
+          {data.map(person => (
             <li key={person._id}>{person.name}</li>
           ))}
         </ul>
