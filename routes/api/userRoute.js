@@ -27,4 +27,17 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+router.post("/create", async (req, res) => {
+  try {
+    const newUser = req.body;
+    console.log(req.body);
+    res.status(200).json(newUser);
+  } catch (err) {
+    res.status(400).json({
+      message: "Error on route",
+      err
+    });
+  }
+});
+
 module.exports = router;
