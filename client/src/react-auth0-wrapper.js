@@ -35,10 +35,9 @@ export const Auth0Provider = ({
       if (isAuthenticated) {
         const user = await auth0FromHook.getUser();
         setUser(user);
-        console.log(user);
         axios
           .post(`/api/user/create`, user)
-          .then(res => console.log(res))
+          .then(res => console.log(res.data))
           .catch(err => console.log(err));
       }
 
