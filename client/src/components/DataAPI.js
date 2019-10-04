@@ -14,7 +14,6 @@ const useDataAPI = (initialUrl, initialData) => {
 
       try {
         const result = await Axios(url);
-        console.log(result.data);
         setData(result.data);
       } catch (error) {
         setIsError(true);

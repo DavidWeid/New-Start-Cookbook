@@ -6,6 +6,7 @@ const User = require("../../models/User");
 router.get("/", async (req, res) => {
   try {
     const result = await User.find();
+    console.log(result);
     res.status(200).json(result);
   } catch (err) {
     res.status(400).json({

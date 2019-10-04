@@ -4,7 +4,7 @@ import "./Pages.css";
 
 const Home = () => {
   const [{ data, isLoading, isError }, doFetch] = DataAPI(
-    "/api/test/test-data",
+    "/api/user/",
     []
   );
   const [personID, setPersonID] = useState(0);
@@ -28,7 +28,7 @@ const Home = () => {
       ) : (
         <ul>
           {data.map(person => (
-            <li key={person._id}>{person.name}</li>
+            <li key={person._id}>{person.username}</li>
           ))}
         </ul>
       )}
