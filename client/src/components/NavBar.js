@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "../react-auth0-wrapper";
-import DetectOutside from "../components/outsideClick";
+import DetectOutside from "./OutsideClick";
 import "./CSS/navbar.css";
 
 const NavBar = () => {
