@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "../react-auth0-wrapper";
-import OutsideAlerter from "./OutsideClick";
+import OutsideAlerter from "./OutsideAlerter";
 import "./CSS/navbar.css";
 
 const NavBar = () => {
