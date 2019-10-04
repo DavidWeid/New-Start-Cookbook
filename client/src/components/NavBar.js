@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "../react-auth0-wrapper";
-import DetectOutside from "../components/OutsideClick";
+import OutsideAlerter from "./OutsideClick";
 import "./CSS/navbar.css";
 
 const NavBar = () => {
@@ -21,7 +21,7 @@ const NavBar = () => {
           Profile
         </button>
         <div id="profile-dropdown" className="dropdown-content">
-          <DetectOutside>
+          <OutsideAlerter>
             {!isAuthenticated && (
               <button onClick={() => loginWithRedirect({})}>Log in</button>
             )}
@@ -35,7 +35,7 @@ const NavBar = () => {
                 <Link to="/profile">Profile</Link>
               </div>
             )}
-          </DetectOutside>
+          </OutsideAlerter>
         </div>
       </div>
     </nav>
