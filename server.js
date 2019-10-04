@@ -72,6 +72,35 @@ db.once("open", function() {
       }
     });
   });
+  const recipe1 = new models.Recipe({
+    creator: "David",
+    owner: "Eric",
+    title: "Fried Rice",
+    description: "Just the best Fried Rice!",
+    ingredients: [
+      { amount: "5 cups", item: "Rice" },
+      { amount: "1 cups", item: "Everything else." }
+    ],
+    instructions: [
+      "Add oil",
+      "Heat oil. Add rice.",
+      "Fry rice",
+      "Add everything else"
+    ],
+    tags: ["rice", "asian"]
+  });
+
+  Recipe.find({ title: recipe1.title }, function(err, recipe) {
+    if (err) return handleError(err);
+    if (recipe.length > 0) {
+      return console.log("Recipe exists");
+    } else {
+      recipe1.save(function(err) {
+        if (err) return handleError(err);
+        console.log("Recipe added");
+      });
+    }
+  });
 });
 
 app.listen(PORT, () =>
