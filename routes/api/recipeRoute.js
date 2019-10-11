@@ -16,16 +16,20 @@ router.get("/", async (req, res) => {
 });
 
 // get all recipes by owner (result = [{...}])
-router.get("/mine", async (req, res) => {
-  try {
-    const result = await Recipe.find({ owner: "Eric" });
-    res.status(200).json(result);
-  } catch (err) {
-    res.status(400).json({
-      message: "Error on route",
-      err
-    });
-  }
+router.get("/mine/:email", async (req, res) => {
+    const userEmail = req.params.email;
+    console.log(userEmail);
+    res.json(userEmail);
+    // res.send("Hit");
+//   try {
+//     const result = await Recipe.find({ owner: "Eric" });
+//     res.status(200).json(result);
+//   } catch (err) {
+//     res.status(400).json({
+//       message: "Error on route",
+//       err
+//     });
+//   }
 });
 
 // get one Recipe by _id (result = {...})
