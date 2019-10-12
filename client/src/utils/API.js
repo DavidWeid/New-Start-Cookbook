@@ -7,8 +7,7 @@ export default {
   testSinglePerson(personID) {
     return Axios.get(`/api/test/test-data/${personID}`);
   },
-  grabRecipesForUser(user) {
-    console.log(user);
-    return Axios.get(`/api/recipe/mine/${user.email}`)
+  grabRecipesForUser(email) {
+    return Axios.get(`/api/recipe/mine/${email}`)
   }
 };

@@ -73,8 +73,8 @@ db.once("open", function() {
     });
   });
   const recipe1 = new models.Recipe({
-    creator: "Eric",
-    owner: "Eric",
+    creator: "zijinQT@mailer.com",
+    owner: "zijinQT@mailer.com",
     title: "Fried Rice",
     description: "Just the best Fried Rice!",
     ingredients: [
@@ -90,8 +90,8 @@ db.once("open", function() {
     tags: ["rice", "asian"]
   });
   const recipe2 = new models.Recipe({
-    creator: "Eric",
-    owner: "David",
+    creator: "zijinQT@mailer.com",
+    owner: "david@awesome.com",
     title: "Fried Rice",
     description: "Just Fried Rice!",
     ingredients: [

@@ -5,8 +5,8 @@ const Recipe = require("../../models/Recipe");
 // get all Recipes (result = [{...}])
 router.get("/", async (req, res) => {
   try {
-    const result = await Recipe.find();
-    res.status(200).json(result);
+    const recipes = await Recipe.find();
+    res.status(200).json(recipes);
   } catch (err) {
     res.status(400).json({
       message: "Error on route",
@@ -15,21 +15,17 @@ router.get("/", async (req, res) => {
   }
 });
 
-// get all recipes by owner (result = [{...}])
+// get all recipes by owner's email (result = [{...}])
 router.get("/mine/:email", async (req, res) => {
-    const userEmail = req.params.email;
-    console.log(userEmail);
-    res.json(userEmail);
-    // res.send("Hit");
-//   try {
-//     const result = await Recipe.find({ owner: "Eric" });
-//     res.status(200).json(result);
-//   } catch (err) {
-//     res.status(400).json({
-//       message: "Error on route",
-//       err
-//     });
-//   }
+  try {
+    const recipes = await Recipe.find({ owner: req.params.email });
+    res.status(200).json(recipes);
+  } catch (err) {
+    res.status(400).json({
+      message: "Error on route",
+      err
+    });
+  }
 });
 
 // get one Recipe by _id (result = {...})
