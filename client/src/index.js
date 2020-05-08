@@ -6,7 +6,7 @@ import { Auth0Provider } from "./react-auth0-wrapper";
 import App from "./App";
 import config from "./auth_config.json";
 
-const onRedirectCallback = appState => {
+const onRedirectCallback = (appState) => {
   window.history.replaceState(
     {},
     document.title,

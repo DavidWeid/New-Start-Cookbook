@@ -8,6 +8,6 @@ export default {
     return Axios.get(`/api/test/test-data/${personID}`);
   },
   grabRecipesForUser(email) {
-    return Axios.get(`/api/recipe/mine/${email}`)
-  }
+    return Axios.get(`/api/recipe/mine/${email}`);
+  },
 };

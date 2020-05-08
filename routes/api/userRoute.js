@@ -10,7 +10,7 @@ router.get("/", async (req, res) => {
   } catch (err) {
     res.status(400).json({
       message: "Error on route",
-      err
+      err,
     });
   }
 });
@@ -23,7 +23,7 @@ router.get("/:id", async (req, res) => {
   } catch (err) {
     res.status(400).json({
       message: "Error on route",
-      err
+      err,
     });
   }
 });
@@ -38,9 +38,9 @@ router.post("/create", async (req, res) => {
       console.log("New User");
       const user = new User({
         username: newUser.name,
-        email: newUser.email
+        email: newUser.email,
       });
-      const result = await user.save(function(err) {
+      const result = await user.save(function (err) {
         if (err) return console.error(err);
         console.log("User added");
       });
@@ -52,7 +52,7 @@ router.post("/create", async (req, res) => {
   } catch (err) {
     res.status(400).json({
       message: "Error on route",
-      err
+      err,
     });
   }
 });

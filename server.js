@@ -33,39 +33,39 @@ mongoose.connect(
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    autoIndex: false
+    autoIndex: false,
   }
 );
 
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
-db.once("open", function() {
+db.once("open", function () {
   console.log("DB Connected");
   let usersArr = [];
   const troye = new models.User({
     username: "Troye",
-    email: "troyeBoy@mailer.com"
+    email: "troyeBoy@mailer.com",
   });
   const eric = new models.User({
     username: "Eric",
-    email: "zijinQT@mailer.com"
+    email: "zijinQT@mailer.com",
   });
   const david = new models.User({
     username: "David",
-    email: "djw@mailer.com"
+    email: "djw@mailer.com",
   });
   const kristin = new models.User({
     username: "Kristin",
-    email: "kris@mailer.com"
+    email: "kris@mailer.com",
   });
   usersArr.push(troye, eric, david, kristin);
-  usersArr.forEach(userSeed => {
-    User.find({ username: userSeed.username }, function(err, user) {
+  usersArr.forEach((userSeed) => {
+    User.find({ username: userSeed.username }, function (err, user) {
       if (err) return console.error(err);
       if (user.length > 0) {
         return console.log(`User: ${user[0].username} exists`);
       } else {
-        userSeed.save(function(err) {
+        userSeed.save(function (err) {
           if (err) return console.error(err);
           console.log("User added");
         });
@@ -79,15 +79,15 @@ db.once("open", function() {
     description: "Just the best Fried Rice!",
     ingredients: [
       { amount: "5 cups", item: "Rice" },
-      { amount: "1 cups", item: "Everything else." }
+      { amount: "1 cups", item: "Everything else." },
     ],
     instructions: [
       "Add oil",
       "Heat oil. Add rice.",
       "Fry rice",
-      "Add everything else"
+      "Add everything else",
     ],
-    tags: ["rice", "asian"]
+    tags: ["rice", "asian"],
   });
   const recipe2 = new models.Recipe({
     creator: "zijinQT@mailer.com",
@@ -96,34 +96,34 @@ db.once("open", function() {
     description: "Just Fried Rice!",
     ingredients: [
       { amount: "5 cups", item: "Rice" },
-      { amount: "1 cups", item: "Everything else." }
+      { amount: "1 cups", item: "Everything else." },
     ],
     instructions: [
       "Add oil",
       "Heat oil. Add rice.",
       "Fry rice",
-      "Add everything else"
+      "Add everything else",
     ],
-    tags: ["rice", "asian"]
+    tags: ["rice", "asian"],
   });
 
-  Recipe.find({ title: recipe1.title }, function(err, recipe) {
+  Recipe.find({ title: recipe1.title }, function (err, recipe) {
     if (err) return handleError(err);
     if (recipe.length > 0) {
       return console.log("Recipe exists");
     } else {
-      recipe1.save(function(err) {
+      recipe1.save(function (err) {
         if (err) return handleError(err);
         console.log("Recipe added");
       });
     }
   });
-  Recipe.find({ title: recipe2.title }, function(err, recipe) {
+  Recipe.find({ title: recipe2.title }, function (err, recipe) {
     if (err) return handleError(err);
     if (recipe.length > 0) {
       return console.log("Recipe exists");
     } else {
-      recipe2.save(function(err) {
+      recipe2.save(function (err) {
         if (err) return handleError(err);
         console.log("Recipe added");
       });

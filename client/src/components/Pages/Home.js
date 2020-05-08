@@ -25,7 +25,7 @@ const Home = () => {
       {!isAuthenticated && <div>User Not Authenticated</div>}
       {isAuthenticated && user && <div>Welcome {user.name} </div>}
       <div>
-        {recipes.map(recipe => {
+        {recipes.map((recipe) => {
           return (
             <div key={recipe._id}>
               <h1>{recipe.title}</h1>

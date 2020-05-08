@@ -37,8 +37,8 @@ export const Auth0Provider = ({
         setUser(user);
         axios
           .post(`/api/user/create`, user)
-          .then(res => console.log(res.data))
-          .catch(err => console.log(err));
+          .then((res) => console.log(res.data))
+          .catch((err) => console.log(err));
       }
 
       setLoading(false);
@@ -82,7 +82,7 @@ export const Auth0Provider = ({
         loginWithRedirect: (...p) => auth0Client.loginWithRedirect(...p),
         getTokenSilently: (...p) => auth0Client.getTokenSilently(...p),
         getTokenWithPopup: (...p) => auth0Client.getTokenWithPopup(...p),
-        logout: (...p) => auth0Client.logout(...p)
+        logout: (...p) => auth0Client.logout(...p),
       }}
     >
       {children}

@@ -8,7 +8,7 @@ export default class Auth {
       clientID: process.env.REACT_APP_AUTH0_CLIENT_ID,
       redirectUri: "http://localhost:3000/?callback",
       responseType: "id_token",
-      scope: "openid profile"
+      scope: "openid profile",
     });
 
     this.handleAuthentication = this.handleAuthentication.bind(this);

@@ -4,36 +4,36 @@ const Schema = mongoose.Schema;
 const RecipeSchema = new Schema({
   creator: {
     type: String,
-    required: true
+    required: true,
   },
   owner: {
     type: String,
-    required: true
+    required: true,
   },
   image: {
     type: String,
-    required: false
+    required: false,
   },
   title: {
     type: String,
-    required: true
+    required: true,
   },
   description: {
     type: String,
-    required: true
+    required: true,
   },
   ingredients: {
     type: Array,
-    required: true
+    required: true,
   },
   instructions: {
     type: Array,
-    required: true
+    required: true,
   },
   tags: {
     type: Array,
-    required: false
-  }
+    required: false,
+  },
 });
 
 module.exports = Recipe = mongoose.model("Recipe", RecipeSchema);

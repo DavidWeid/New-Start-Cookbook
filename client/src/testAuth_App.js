@@ -10,12 +10,12 @@ const initialState = {
   meetup: {
     title: "Auth0 Online Meetup",
     date: Date(),
-    attendees: ["David", "Eric", "Kristin", "Chad"]
+    attendees: ["David", "Eric", "Kristin", "Chad"],
   },
   user: {
     nickname: "Boy Troye",
-    name: "Troye"
-  }
+    name: "Troye",
+  },
 };
 
 const reducer = (state, action) => {
@@ -24,43 +24,43 @@ const reducer = (state, action) => {
       return {
         ...state,
         attendees: [...state.attendees, action.payload],
-        subscribed: true
+        subscribed: true,
       };
     case "unsubscribeUser":
       return {
         ...state,
         attendees: state.attendees.filter(
-          attendee => attendee !== action.payload
+          (attendee) => attendee !== action.payload
         ),
-        subscribed: false
+        subscribed: false,
       };
     case "loginUser":
       return {
         ...state,
         isAuthenticated: action.payload.authenticated,
-        name: action.payload.user.nickname
+        name: action.payload.user.nickname,
       };
     default:
       return state;
   }
 };
 
-const UserContextProvider = props => {
+const UserContextProvider = (props) => {
   const [state, dispatch] = React.useReducer(reducer, initialState.user);
   auth.handleAuthentication().then(() => {
     dispatch({
       type: "loginUser",
       payload: {
         authenticated: true,
-        user: auth.getProfile()
-      }
+        user: auth.getProfile(),
+      },
     });
   });
   return (
     <UserContext.Provider
       value={{
         ...state,
-        handleLogin: auth.signIn
+        handleLogin: auth.signIn,
       }}
     >
       {props.children}
@@ -77,7 +77,7 @@ const MeetupContextProvider = ({ user, ...props }) => {
         handleSubscribe: () =>
           dispatch({ type: "subscribeUser", payload: user.name }),
         handleUnsubscribe: () =>
-          dispatch({ type: "unsubscribeUser", payload: user.name })
+          dispatch({ type: "unsubscribeUser", payload: user.name }),
       }}
     >
       {props.children}
@@ -88,16 +88,16 @@ const MeetupContextProvider = ({ user, ...props }) => {
 const App = () => (
   <UserContextProvider>
     <UserContext.Consumer>
-      {user => (
+      {(user) => (
         <MeetupContextProvider user={user}>
           <MeetupContext.Consumer>
-            {meetup => (
+            {(meetup) => (
               <div>
                 <h1>{meetup.title}</h1>
                 <span>{meetup.date}</span>
                 <div>
                   <h2>{`Attendees (${meetup.attendees.length})`}</h2>
-                  {meetup.attendees.map(attendant => (
+                  {meetup.attendees.map((attendant) => (
                     <li>{attendant}</li>
                   ))}
                   <p>

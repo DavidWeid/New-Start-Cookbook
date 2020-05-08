@@ -10,7 +10,7 @@ router.get("/", async (req, res) => {
   } catch (err) {
     res.status(400).json({
       message: "Error on route",
-      err
+      err,
     });
   }
 });
@@ -23,7 +23,7 @@ router.get("/mine/:email", async (req, res) => {
   } catch (err) {
     res.status(400).json({
       message: "Error on route",
-      err
+      err,
     });
   }
 });
@@ -36,7 +36,7 @@ router.get("/view/:id", async (req, res) => {
   } catch (err) {
     res.status(400).json({
       message: "Error on route",
-      err
+      err,
     });
   }
 });
