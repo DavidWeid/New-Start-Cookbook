@@ -50,7 +50,7 @@ router.get("/test-data/:id", async (req, res) => {
   }
 });
 
-//
+// Testing protected route
 router.post("/test-data", checkJwt, async (req, res) => {
   console.log("Testing test/test-data/ post route");
 

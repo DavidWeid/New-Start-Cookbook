@@ -33,6 +33,7 @@ const NavBar = () => {
               <div className="nav-links">
                 <Link to="/">Home</Link>
                 <Link to="/profile">Profile</Link>
+                <Link to="/create">Create Recipe</Link>
               </div>
             )}
           </OutsideAlerter>

@@ -15,6 +15,11 @@ const Home = () => {
         const recipes = await API.grabRecipesForUser(user.email);
         console.log(recipes);
         setRecipes(recipes.data);
+      } else {
+        console.log(`No user: ${user}`);
+        const recipes = []
+        console.log(`No recipes: ${recipes}`)
+        setRecipes([]);
       }
     };
     fetchRecipes();
@@ -27,10 +32,10 @@ const Home = () => {
       <div>
         {recipes.map((recipe) => {
           return (
-            <div key={recipe._id}>
+            <div key={recipe[1] ? recipe._id : null}>
               <h1>{recipe.title}</h1>
-              <p>{recipe.owner}</p>
-              <p>{recipe.description}</p>
+              <p>Source: {recipe.owner}</p>
+              <p>Description: {recipe.description}</p>
             </div>
           );
         })}

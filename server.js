@@ -44,19 +44,19 @@ db.once("open", function () {
   let usersArr = [];
   const troye = new models.User({
     username: "Troye",
-    email: "troyeBoy@mailer.com",
+    email: "troye@mailer.com",
   });
   const eric = new models.User({
-    username: "Eric",
-    email: "zijinQT@mailer.com",
+    username: "Zijin",
+    email: "zijin@mailer.com",
   });
   const david = new models.User({
     username: "David",
-    email: "djw@mailer.com",
+    email: "david@mailer.com",
   });
   const kristin = new models.User({
     username: "Kristin",
-    email: "kris@mailer.com",
+    email: "kristin@mailer.com",
   });
   usersArr.push(troye, eric, david, kristin);
   usersArr.forEach((userSeed) => {
@@ -73,8 +73,8 @@ db.once("open", function () {
     });
   });
   const recipe1 = new models.Recipe({
-    creator: "zijinQT@mailer.com",
-    owner: "zijinQT@mailer.com",
+    creator: "zijin@mailer.com",
+    owner: "zijin@mailer.com",
     title: "Fried Rice",
     description: "Just the best Fried Rice!",
     ingredients: [
@@ -90,8 +90,8 @@ db.once("open", function () {
     tags: ["rice", "asian"],
   });
   const recipe2 = new models.Recipe({
-    creator: "zijinQT@mailer.com",
-    owner: "david@awesome.com",
+    creator: "zijin@mailer.com",
+    owner: "david@mailer.com",
     title: "Fried Rice",
     description: "Just Fried Rice!",
     ingredients: [
