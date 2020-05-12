@@ -41,4 +41,10 @@ router.get("/view/:id", async (req, res) => {
   }
 });
 
+router.post("/create/", async (req, res) => {
+  console.log(`recipeRoute post request body:`);
+  console.log(req.body);
+  res.status(200).send("Got it");
+});
+
 module.exports = router;

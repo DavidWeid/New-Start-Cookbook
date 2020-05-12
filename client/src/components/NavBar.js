@@ -14,7 +14,7 @@ const NavBar = () => {
     <nav id="navbar">
       <button>Timers</button>
 
-      <span>Cook Book</span>
+      <Link to="/">Cook Book</Link>
 
       <div className="dropdown">
         <button className="btn-drop" onClick={() => dropdownMenu()}>
@@ -33,7 +33,8 @@ const NavBar = () => {
               <div className="nav-links">
                 <Link to="/">Home</Link>
                 <Link to="/profile">Profile</Link>
-                <Link to="/create">Create Recipe</Link>
+                <Link to="/create">Create</Link>
+                <Link to="/search">Search</Link>
               </div>
             )}
           </OutsideAlerter>

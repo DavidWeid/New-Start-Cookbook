@@ -1,6 +1,6 @@
 import React from "react";
 // import DataAPI from "../DataAPI";
-import "./Pages.css";
+import "../CSS/pages.css";
 
 const Recipe = () => {
   return (

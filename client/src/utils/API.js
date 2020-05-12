@@ -10,4 +10,7 @@ export default {
   grabRecipesForUser(email) {
     return Axios.get(`/api/recipe/mine/${email}`);
   },
+  createNewRecipe(recipe) {
+    return Axios.post("/api/recipe/create/", recipe);
+  },
 };
