@@ -16,6 +16,11 @@ const CreateRecipeForm = () => {
   const blankIngredient = { ingredient: "", amount: "" };
   const [ingredients, setIngredients] = useState([{ ...blankIngredient }]);
 
+  const blankInstructionStep = "";
+  const [instructionSteps, setInstructionSteps] = useState([
+    ...blankInstructionStep,
+  ]);
+
   const addIngredient = () => {
     setIngredients([...ingredients, { ...blankIngredient }]);
   };
@@ -25,6 +30,17 @@ const CreateRecipeForm = () => {
     updatedIngredients[e.target.dataset.idx][e.target.className] =
       e.target.value;
     setIngredients(updatedIngredients);
+  };
+
+  const addInstructionStep = () => {
+    setInstructionSteps([...instructionSteps, ...blankInstructionStep]);
+  };
+
+  const handleInstructionStepChange = (e) => {
+    const updatedInstructionSteps = [...instructionSteps];
+    updatedInstructionSteps[e.target.dataset.idx][e.target.className] =
+      e.target.value;
+    setInstructionSteps(updatedInstructionSteps);
   };
 
   const onSubmit = (data, e) => {
@@ -101,6 +117,27 @@ const CreateRecipeForm = () => {
                   className="amount"
                   value={ingredients[idx].amount}
                   onChange={handleIngredientChange}
+                  ref={register()}
+                />
+              </div>
+            );
+          })}
+
+          <input type="button" value="Add Instruction Step" onClick={addInstructionStep} />
+
+          {instructionSteps.map((val, idx) => {
+            const instructionId = `instructionSteps[${idx}]`;
+            return (
+              <div key={`instruction-${idx}`}>
+                <input
+                  type="text"
+                  name={instructionId}
+                  data-idx={idx}
+                  placeholder="Instruction Step"
+                  id={instructionId}
+                  className="instructionStep"
+                  value={instructionSteps[idx]}
+                  onChange={handleInstructionStepChange}
                   ref={register()}
                 />
               </div>
