@@ -5,26 +5,58 @@ import { useForm } from "react-hook-form";
 import "./CSS/createRecipeForm.css";
 
 const CreateRecipeForm = () => {
-  const { isAuthenticated, user } = useAuth0();
+  /*** Require User and Form ***/
 
+  const { isAuthenticated, user } = useAuth0();
   const { register, handleSubmit } = useForm();
 
+  /*** Create and set our states ***/
+
+  // useState for recipe (obj) - title and description
   const [recipe, setRecipe] = useState({ title: "", description: "" });
   const handleRecipeChange = (e) =>
     setRecipe({ ...recipe, [e.target.name]: [e.target.value] });
 
+  // useState for ingredients (array of objects) - ingredient and amount
   const blankIngredient = { ingredient: "", amount: "" };
   const [ingredients, setIngredients] = useState([{ ...blankIngredient }]);
 
-  const blankInstructionStep = "";
-  const [instructionSteps, setInstructionSteps] = useState([
-    ...blankInstructionStep,
-  ]);
+  // useState for instructionSteeps (arrary) - STRING
+  const [instructionSteps, setInstructionSteps] = useState([""]);
 
+  /*** Methods ***/
+
+  // Add ingredient button adds inputs for next ingredient (can't add if any ingredient (ingredient or amount) is blank)
   const addIngredient = () => {
-    setIngredients([...ingredients, { ...blankIngredient }]);
+    let currentIngredients = ingredients;
+
+    // if there is a blank input, this is true
+    const foundMissingIngredient = currentIngredients.find(
+      (ingredient) => ingredient.ingredient === "" || ingredient.amount === ""
+    );
+
+    // if no blank input found, we're good to go
+    if (foundMissingIngredient === undefined) {
+      setIngredients([...ingredients, { ...blankIngredient }]);
+    } else {
+      console.log("Missing ingredient or amount!");
+      return;
+    }
   };
 
+  // Remove an ingredient's inputs, unless it's the only ingredient
+  const removeIngredient = (e) => {
+    const targetIngredientIndex = e.target.dataset.idx;
+    if (ingredients.length > 1) {
+      ingredients.splice(targetIngredientIndex, 1);
+      setIngredients([...ingredients]);
+    } else {
+      console.log("At least one ingredient required!");
+      return;
+    }
+  };
+
+  // Set ingredient state as User types
   const handleIngredientChange = (e) => {
     const updatedIngredients = [...ingredients];
     updatedIngredients[e.target.dataset.idx][e.target.className] =
@@ -32,28 +64,57 @@ const CreateRecipeForm = () => {
     setIngredients(updatedIngredients);
   };
 
+  // Add instruction step button adds inputs for next instruction (can't add more steps if any step is blank)
   const addInstructionStep = () => {
-    setInstructionSteps([...instructionSteps, ...blankInstructionStep]);
+    let currentInstructionSteps = instructionSteps;
+
+    // if there is a blank input, this is true
+    const foundMissingInstructionStep = currentInstructionSteps.find(
+      (instruction) => instruction === ""
+    );
+
+    // if no blank input found, we're good to go
+    if (foundMissingInstructionStep === undefined) {
+      setInstructionSteps([...instructionSteps, ""]);
+    } else {
+      console.log("Missing an instruction step!");
+      return;
+    }
   };
 
+  // Remove an ingredient's inputs, unless it's the only ingredient
+  const removeInstruction = (e) => {
+    const targetInstructionIndex = e.target.dataset.idx;
+    if (instructionSteps.length > 1) {
+      instructionSteps.splice(targetInstructionIndex, 1);
+      setInstructionSteps([...instructionSteps]);
+    } else {
+      console.log("At least one instruction step required!");
+      return;
+    }
+  };
+
+  // Set instruction state as User types
   const handleInstructionStepChange = (e) => {
     const updatedInstructionSteps = [...instructionSteps];
-    updatedInstructionSteps[e.target.dataset.idx][e.target.className] =
-      e.target.value;
+    updatedInstructionSteps[e.target.dataset.idx] = e.target.value;
     setInstructionSteps(updatedInstructionSteps);
   };
 
   const onSubmit = (data, e) => {
-    console.log(data);
-    console.log(e);
-    console.log(JSON.stringify(data));
-    console.log(user.email);
 
     const recipe = data;
     recipe.creator = user.email;
     recipe.owner = user.email;
 
     console.log(recipe);
+
+    // check for blank ingredient
+    console.log(recipe.ingredients[recipe.ingredients.length - 1].ingredient);
+    console.log(recipe.ingredients[recipe.ingredients.length - 1].amount);
+
+    // check for blank instructionStep
+    console.log(recipe.instructionSteps[recipe.instructionSteps.length - 1]);
 
     API.createNewRecipe(recipe)
       .then((response) => {
@@ -62,15 +123,16 @@ const CreateRecipeForm = () => {
       .catch((err) => {
         console.log(err);
       });
+
     setIngredients([{ ...blankIngredient }]);
     setRecipe({ title: "", description: "" });
+    setInstructionSteps([""]);
   };
 
   return (
     <Fragment>
       {!isAuthenticated && <div>Please log in to create a recipe.</div>}
       {isAuthenticated && user && (
-        /* {!isAuthenticated && ( */
         <form onSubmit={handleSubmit(onSubmit)}>
           <input
             type="text"
@@ -119,16 +181,27 @@ const CreateRecipeForm = () => {
                   onChange={handleIngredientChange}
                   ref={register()}
                 />
+                <input
+                  type="button"
+                  value="Remove"
+                  onClick={removeIngredient}
+                  data-idx={idx}
+                />
               </div>
             );
           })}
 
-          <input type="button" value="Add Instruction Step" onClick={addInstructionStep} />
+          <input
+            type="button"
+            value="Add Instruction Step"
+            onClick={addInstructionStep}
+          />
 
           {instructionSteps.map((val, idx) => {
             const instructionId = `instructionSteps[${idx}]`;
             return (
               <div key={`instruction-${idx}`}>
+                <span>{idx + 1}</span>
                 <input
                   type="text"
                   name={instructionId}
@@ -139,6 +212,12 @@ const CreateRecipeForm = () => {
                   value={instructionSteps[idx]}
                   onChange={handleInstructionStepChange}
                   ref={register()}
+                />
+                <input
+                  type="button"
+                  value="Remove"
+                  onClick={removeInstruction}
+                  data-idx={idx}
                 />
               </div>
             );
