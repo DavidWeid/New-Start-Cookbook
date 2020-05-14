@@ -101,32 +101,50 @@ const CreateRecipeForm = () => {
     setInstructionSteps(updatedInstructionSteps);
   };
 
+  // When User submits recipe
   const onSubmit = (data, e) => {
-
     const recipe = data;
+
+    // Add user info to recipe (newly created recipes have one creator/owner)
     recipe.creator = user.email;
     recipe.owner = user.email;
 
     console.log(recipe);
 
-    // check for blank ingredient
-    console.log(recipe.ingredients[recipe.ingredients.length - 1].ingredient);
-    console.log(recipe.ingredients[recipe.ingredients.length - 1].amount);
+    // last check for any blank input fields (ingredient or instruction)
+    let currentIngredients = ingredients;
+    let currentInstructionSteps = instructionSteps;
 
-    // check for blank instructionStep
-    console.log(recipe.instructionSteps[recipe.instructionSteps.length - 1]);
+    // if there is a blank input, this is true
+    const foundMissingIngredient = currentIngredients.find(
+      (ingredient) => ingredient.ingredient === "" || ingredient.amount === ""
+    );
+    const foundMissingInstructionStep = currentInstructionSteps.find(
+      (instruction) => instruction === ""
+    );
 
-    API.createNewRecipe(recipe)
-      .then((response) => {
-        console.log(response.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    // if no blank input found, we're good to go
+    if (
+      foundMissingIngredient === undefined &&
+      foundMissingInstructionStep === undefined
+    ) {
+      // Send recipe to our API
+      API.createNewRecipe(recipe)
+        .then((response) => {
+          console.log(response.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
 
-    setIngredients([{ ...blankIngredient }]);
-    setRecipe({ title: "", description: "" });
-    setInstructionSteps([""]);
+      // Reset form / recipe state to blank
+      setIngredients([{ ...blankIngredient }]);
+      setRecipe({ title: "", description: "" });
+      setInstructionSteps([""]);
+    } else {
+      console.log("Missing ingredient or amount or missing instruction step!");
+      return;
+    }
   };
 
   return (
