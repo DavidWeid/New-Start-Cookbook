@@ -2,15 +2,19 @@ import Axios from "axios";
 
 export default {
   testAllPeople() {
-    return Axios.get("/api/test/test-data");
+    const getAllPeople = Axios.get("/api/test/test-data");
+    return getAllPeople;
   },
   testSinglePerson(personID) {
-    return Axios.get(`/api/test/test-data/${personID}`);
+    const getSinglePerson = Axios.get(`/api/test/test-data/${personID}`);
+    return getSinglePerson;
   },
   grabRecipesForUser(email) {
-    return Axios.get(`/api/recipe/mine/${email}`);
+    const getAllRecipesByEmail = Axios.get(`/api/recipe/mine/${email}`);
+    return getAllRecipesByEmail;
   },
   createNewRecipe(recipe) {
-    return Axios.post("/api/recipe/create/", recipe);
+    const createNewRecipe = Axios.post("/api/recipe/create/", recipe);
+    return createNewRecipe;
   },
 };

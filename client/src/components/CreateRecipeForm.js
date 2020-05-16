@@ -24,6 +24,9 @@ const CreateRecipeForm = () => {
   // useState for instructionSteeps (arrary) - STRING
   const [instructionSteps, setInstructionSteps] = useState([""]);
 
+  // useState for tags (array) - STRING
+  const [recipeTags, setRecipeTags] = useState([]);
+
   /*** Methods ***/
 
   // Add ingredient button adds inputs for next ingredient (can't add if any ingredient (ingredient or amount) is blank)
@@ -101,13 +104,27 @@ const CreateRecipeForm = () => {
     setInstructionSteps(updatedInstructionSteps);
   };
 
+  // Add recipe tags from single input - add new tags on "," or "enter"
+  const onKeyUp = (e) => {
+    if (e.which === 188 || e.which === 13) {
+      let input = e.target.value.trim().split(",");
+      if (input.length === 0 || input[0] === "") return;
+
+      const newTag = input[0];
+      setRecipeTags((recipeTags) => [...recipeTags, newTag]);
+      e.target.value = "";
+    }
+  };
+
   // When User submits recipe
   const onSubmit = (data, e) => {
     const recipe = data;
 
     // Add user info to recipe (newly created recipes have one creator/owner)
+    // Add tags to recipe
     recipe.creator = user.email;
     recipe.owner = user.email;
+    recipe.tags = recipeTags;
 
     console.log(recipe);
 
@@ -141,6 +158,7 @@ const CreateRecipeForm = () => {
       setIngredients([{ ...blankIngredient }]);
       setRecipe({ title: "", description: "" });
       setInstructionSteps([""]);
+      setRecipeTags([]);
     } else {
       console.log("Missing ingredient or amount or missing instruction step!");
       return;
@@ -240,11 +258,23 @@ const CreateRecipeForm = () => {
               </div>
             );
           })}
+
+          <input
+            onKeyUp={(e) => onKeyUp(e)}
+            type="text"
+            placeholder="Add comma-separated recipe tags."
+          />
+
           <input type="submit" value="Submit" />
         </form>
       )}
       <div>{recipe.title}</div>
       <div>{recipe.description}</div>
+      <div>
+        {recipeTags.map((val, idx) => {
+          return <p key={idx}>{val}</p>;
+        })}
+      </div>
     </Fragment>
   );
 };

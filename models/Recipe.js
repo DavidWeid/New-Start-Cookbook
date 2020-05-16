@@ -26,7 +26,7 @@ const RecipeSchema = new Schema({
     type: Array,
     required: true,
   },
-  instructions: {
+  instructionSteps: {
     type: Array,
     required: true,
   },

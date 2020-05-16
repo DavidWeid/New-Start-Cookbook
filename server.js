@@ -78,10 +78,10 @@ db.once("open", function () {
     title: "Fried Rice",
     description: "Just the best Fried Rice!",
     ingredients: [
-      { amount: "5 cups", item: "Rice" },
-      { amount: "1 cups", item: "Everything else." },
+      { amount: "5 cups", ingredient: "Rice" },
+      { amount: "1 cups", ingredient: "Everything else." },
     ],
-    instructions: [
+    instructionSteps: [
       "Add oil",
       "Heat oil. Add rice.",
       "Fry rice",
@@ -95,10 +95,10 @@ db.once("open", function () {
     title: "Fried Rice",
     description: "Just Fried Rice!",
     ingredients: [
-      { amount: "5 cups", item: "Rice" },
-      { amount: "1 cups", item: "Everything else." },
+      { amount: "5 cups", ingredient: "Rice" },
+      { amount: "1 cups", ingredient: "Everything else." },
     ],
-    instructions: [
+    instructionSteps: [
       "Add oil",
       "Heat oil. Add rice.",
       "Fry rice",
