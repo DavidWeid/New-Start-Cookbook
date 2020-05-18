@@ -16,11 +16,11 @@ function App() {
           <NavBar />
         </header>
         <Switch>
-          <Route path="/" exact component={Home} />
+          <Route path="/" exact component={Home} />{" "}
+          <PrivateRoute path="/create" component={Create} />
           <PrivateRoute path="/profile" component={Profile} />
-          <Route path="/recipe" component={Recipe} />
+          <Route path="/recipe/:id" component={Recipe} />
           <Route path="/search" component={Search} />
-          <Route path="/create" component={Create} />
           <Route component={NoMatch} />
         </Switch>
       </Router>

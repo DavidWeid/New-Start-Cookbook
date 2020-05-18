@@ -2,7 +2,7 @@ import React, { Fragment, useState, useEffect } from "react";
 import { useAuth0 } from "../../react-auth0-wrapper";
 import API from "../../utils/API";
 import { Link } from "react-router-dom";
-import "../CSS/pages.css"
+import "../CSS/pages.css";
 
 const Home = () => {
   const { isAuthenticated, user } = useAuth0();
@@ -26,7 +26,7 @@ const Home = () => {
     fetchRecipes();
   }, [user]);
 
-  console.log(recipes)
+  console.log(recipes);
 
   return (
     <Fragment>
@@ -50,12 +50,15 @@ const Home = () => {
                 <h2>{recipe.title}</h2>
                 <p>Source: {recipe.owner}</p>
                 <p>Description: {recipe.description}</p>
+                <Link to={`/recipe/${recipe._id}`}>View Recipe</Link>
               </div>
             );
           })}
           <Link to="/create">Create</Link>
-          <br/>
+          <br />
           <Link to="/search">Search</Link>
+          <br />
+          <Link to="/recipe/5eb583be4c50e059e0e2eeca">Unowned Recipe</Link>
         </div>
       )}
     </Fragment>

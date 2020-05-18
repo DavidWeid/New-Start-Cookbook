@@ -268,8 +268,6 @@ const CreateRecipeForm = () => {
           <input type="submit" value="Submit" />
         </form>
       )}
-      <div>{recipe.title}</div>
-      <div>{recipe.description}</div>
       <div>
         {recipeTags.map((val, idx) => {
           return <p key={idx}>{val}</p>;
