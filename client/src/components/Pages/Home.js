@@ -46,7 +46,7 @@ const Home = () => {
           </p>
           {recipes.map((recipe) => {
             return (
-              <div key={recipe[1] ? recipe._id : null}>
+              <div key={recipe._id}>
                 <h2>{recipe.title}</h2>
                 <p>Source: {recipe.owner}</p>
                 <p>Description: {recipe.description}</p>
