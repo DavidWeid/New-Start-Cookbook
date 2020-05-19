@@ -6,6 +6,7 @@ const Recipe = require("../../models/Recipe");
 router.get("/", async (req, res) => {
   try {
     const allRecipes = await Recipe.find();
+    console.log("All Recipes Grabbed");
     res.status(200).json(allRecipes);
   } catch (err) {
     res.status(400).json({
@@ -19,6 +20,7 @@ router.get("/", async (req, res) => {
 router.get("/mine/:email", async (req, res) => {
   try {
     const allRecipesByEmail = await Recipe.find({ owner: req.params.email });
+    console.log(`Recipes Grabbed by User's Email: ${req.params.email}`);
     res.status(200).json(allRecipesByEmail);
   } catch (err) {
     res.status(400).json({
@@ -32,6 +34,7 @@ router.get("/mine/:email", async (req, res) => {
 router.get("/view/:id", async (req, res) => {
   try {
     const singleRecipeById = await Recipe.findOne({ _id: req.params.id });
+    console.log(`Recipe Grabbed By Id: ${req.params.id}`);
     res.status(200).json(singleRecipeById);
   } catch (err) {
     res.status(400).json({
@@ -41,10 +44,12 @@ router.get("/view/:id", async (req, res) => {
   }
 });
 
+// create new recipe
 router.post("/create/", async (req, res) => {
   try {
     const newRecipe = req.body;
     const result = await Recipe.create(newRecipe);
+    console.log("New Recipe Saved");
     res.status(200).json(result);
   } catch (err) {
     res.status(400).json({
@@ -54,11 +59,13 @@ router.post("/create/", async (req, res) => {
   }
 });
 
+// delete one Recipe by _id
 router.delete("/delete/:id", async (req, res) => {
   try {
     const deleteRecipeById = await Recipe.findByIdAndDelete({
       _id: req.params.id,
     });
+    console.log(`Recipe Deleted By Id: ${req.params.id}`);
     res.status(200).json(deleteRecipeById);
   } catch (err) {
     res.status(400).json({

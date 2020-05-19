@@ -43,11 +43,13 @@ const Recipe = () => {
   return (
     <div>
       <h1>Recipe Page</h1>
+      {/* RecipeOptionsNav handles the recipe navigation (save, edit, delete) */}
       <RecipeOptionsNav
         isAuthenticated={isAuthenticated}
         user={user}
         recipe={recipe}
       ></RecipeOptionsNav>
+      {/* Recipe Div (below) */}
       <div>
         <p>
           {recipe.title} by {recipe.owner}
@@ -82,6 +84,7 @@ const Recipe = () => {
           </Fragment>
         </div>
       </div>
+      {/* Recipe Div End (above) */}
     </div>
   );
 };

@@ -39,13 +39,20 @@ const RecipeOptionsNav = (props) => {
       });
   };
 
+  // Edit Recipe button Redirects User to an Edit page
+  const editRecipe = () => {
+    const targetRecipeId = recipe._id;
+    renderRedirect(`/edit-recipe/${targetRecipeId}`);
+  };
+
+  // Display the recipe's navigation bar that changes based on user vs !user and if user, owner vs !owner
   return (
     <Fragment>
       {isAuthenticated && user ? (
         <Fragment>
           {user.email === recipe.owner ? (
             <div>
-              <p>Edit</p>
+              <input type="button" value="Edit" onClick={editRecipe} />
               <input type="button" value="Delete" onClick={deleteRecipe} />
             </div>
           ) : (
