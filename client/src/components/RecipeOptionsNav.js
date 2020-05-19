@@ -1,12 +1,15 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import API from "../utils/API";
 import { useHistory } from "react-router-dom";
+import ConfirmationBox from "./ConfirmationBox";
 
 const RecipeOptionsNav = (props) => {
   const recipe = props.recipe;
   const user = props.user;
   const isAuthenticated = props.isAuthenticated;
   const history = useHistory();
+
+  const [deleteConfirmation, setDeleteConfirmation] = useState("no");
 
   const renderRedirect = (url) => {
     history.push(url);
@@ -26,8 +29,18 @@ const RecipeOptionsNav = (props) => {
       });
   };
 
+  const confirmDelete = () => {
+    setDeleteConfirmation("yes");
+  };
+
+  const negateDelete = () => {
+    console.log("Don't Delete Recipe");
+    setDeleteConfirmation("no");
+  };
+
   // Delete Recipe by ID and Redirect User to homepage
   const deleteRecipe = () => {
+    console.log("Delete Recipe");
     const targetRecipeId = recipe._id;
     API.deleteRecipeById(targetRecipeId)
       .then((response) => {
@@ -48,12 +61,19 @@ const RecipeOptionsNav = (props) => {
   // Display the recipe's navigation bar that changes based on user vs !user and if user, owner vs !owner
   return (
     <Fragment>
+      {/* If user clicks on "Delete" button, show a confirmation box via setting deleteConfirmation to "yes". This is essentially a modal */}
+      {deleteConfirmation === "no" ? (
+        <Fragment></Fragment>
+      ) : (
+        <ConfirmationBox yes={deleteRecipe} no={negateDelete} />
+      )}
+
       {isAuthenticated && user ? (
         <Fragment>
           {user.email === recipe.owner ? (
             <div>
               <input type="button" value="Edit" onClick={editRecipe} />
-              <input type="button" value="Delete" onClick={deleteRecipe} />
+              <input type="button" value="Delete" onClick={confirmDelete} />
             </div>
           ) : (
             <div>
