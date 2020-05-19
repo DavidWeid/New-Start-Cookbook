@@ -6,19 +6,23 @@ export default {
     return getAllPeople;
   },
   testSinglePerson(personId) {
-    const getSinglePerson = Axios.get(`/api/test/test-data/${personId}`);
-    return getSinglePerson;
+    const getSinglePersonById = Axios.get(`/api/test/test-data/${personId}`);
+    return getSinglePersonById;
   },
   grabRecipesForUser(email) {
     const getAllRecipesByEmail = Axios.get(`/api/recipe/mine/${email}`);
     return getAllRecipesByEmail;
   },
   grabRecipeById(recipeId) {
-    const getSingleRecipe = Axios.get(`/api/recipe/view/${recipeId}`);
-    return getSingleRecipe;
+    const getRecipeById = Axios.get(`/api/recipe/view/${recipeId}`);
+    return getRecipeById;
   },
   createNewRecipe(recipe) {
     const createNewRecipe = Axios.post("/api/recipe/create/", recipe);
     return createNewRecipe;
+  },
+  deleteRecipeById(id) {
+    const deleteRecipeById = Axios.delete(`/api/recipe/delete/${id}`);
+    return deleteRecipeById;
   },
 };

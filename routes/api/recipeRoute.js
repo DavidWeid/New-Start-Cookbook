@@ -54,4 +54,18 @@ router.post("/create/", async (req, res) => {
   }
 });
 
+router.delete("/delete/:id", async (req, res) => {
+  try {
+    const deleteRecipeById = await Recipe.findByIdAndDelete({
+      _id: req.params.id,
+    });
+    res.status(200).json(deleteRecipeById);
+  } catch (err) {
+    res.status(400).json({
+      message: "Error on route",
+      err,
+    });
+  }
+});
+
 module.exports = router;
