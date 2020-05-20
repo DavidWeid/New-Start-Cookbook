@@ -116,6 +116,13 @@ const CreateRecipeForm = () => {
     }
   };
 
+  const removeTag = (e) => {
+    const targetTagIndex = e.target.dataset.idx;
+    const updatedTags = [...recipeTags];
+    updatedTags.splice(targetTagIndex, 1);
+    setRecipeTags(updatedTags);
+  };
+
   // When User submits recipe
   const onSubmit = (data, e) => {
     const recipe = data;
@@ -188,7 +195,6 @@ const CreateRecipeForm = () => {
             onChange={handleRecipeChange}
             ref={register({ required: true })}
           />
-          <input type="button" value="Add Ingredient" onClick={addIngredient} />
 
           {ingredients.map((val, idx) => {
             const ingredientId = `ingredients[${idx}].ingredient`;
@@ -227,11 +233,7 @@ const CreateRecipeForm = () => {
             );
           })}
 
-          <input
-            type="button"
-            value="Add Instruction Step"
-            onClick={addInstructionStep}
-          />
+          <input type="button" value="Add Ingredient" onClick={addIngredient} />
 
           {instructionSteps.map((val, idx) => {
             const instructionId = `instructionSteps[${idx}]`;
@@ -260,6 +262,22 @@ const CreateRecipeForm = () => {
           })}
 
           <input
+            type="button"
+            value="Add Instruction Step"
+            onClick={addInstructionStep}
+          />
+
+          <div>
+            {recipeTags.map((tag, idx) => {
+              return (
+                <p key={idx} data-idx={idx} onClick={removeTag}>
+                  {tag}
+                </p>
+              );
+            })}
+          </div>
+
+          <input
             onKeyUp={(e) => onKeyUp(e)}
             type="text"
             placeholder="Add comma-separated recipe tags."
@@ -268,11 +286,6 @@ const CreateRecipeForm = () => {
           <input type="submit" value="Submit" />
         </form>
       )}
-      <div>
-        {recipeTags.map((val, idx) => {
-          return <p key={idx}>{val}</p>;
-        })}
-      </div>
     </Fragment>
   );
 };

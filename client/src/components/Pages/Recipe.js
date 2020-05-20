@@ -83,6 +83,14 @@ const Recipe = () => {
             })}
           </Fragment>
         </div>
+        <div>
+          <h3>Tags</h3>
+          <div>
+            {recipe.tags.map((tag, idx) => {
+              return <span key={idx}>{tag} </span>;
+            })}
+          </div>
+        </div>
       </div>
       {/* Recipe Div End (above) */}
     </div>

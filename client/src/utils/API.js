@@ -21,6 +21,10 @@ export default {
     const createNewRecipe = Axios.post("/api/recipe/create/", recipe);
     return createNewRecipe;
   },
+  updateRecipe(recipe) {
+    const updateRecipe = Axios.put("/api/recipe/update/", recipe);
+    return updateRecipe;
+  },
   deleteRecipeById(id) {
     const deleteRecipeById = Axios.delete(`/api/recipe/delete/${id}`);
     return deleteRecipeById;

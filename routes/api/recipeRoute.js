@@ -59,6 +59,24 @@ router.post("/create/", async (req, res) => {
   }
 });
 
+// update existing recipe by _id
+router.put("/update/", async (req, res) => {
+  try {
+    const recipe = req.body;
+    const updatedRecipe = await Recipe.findByIdAndUpdate(
+      { _id: recipe._id },
+      recipe
+    );
+    console.log(`Recipe Updated By Id: ${req.body._id}`);
+    res.status(200).json(updatedRecipe);
+  } catch (err) {
+    res.status(400).json({
+      message: "Error on route",
+      err,
+    });
+  }
+});
+
 // delete one Recipe by _id
 router.delete("/delete/:id", async (req, res) => {
   try {

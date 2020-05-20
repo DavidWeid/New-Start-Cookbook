@@ -19,7 +19,7 @@ function App() {
         <Switch>
           <Route path="/" exact component={Home} />
           <PrivateRoute path="/create" component={Create} />
-          <PrivateRoute path="/edit-recipe/:id" component={EditRecipe} />
+          <Route path="/edit-recipe/:id" component={EditRecipe} />
           <PrivateRoute path="/profile" component={Profile} />
           <Route path="/recipe/:id" component={Recipe} />
           <Route path="/search" component={Search} />
