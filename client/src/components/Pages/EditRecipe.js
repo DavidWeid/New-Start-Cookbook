@@ -12,8 +12,6 @@ const EditRecipe = () => {
   const { user } = useAuth0();
   const { register, handleSubmit } = useForm();
 
-  //   const [userEmail, setUserEmail] = useState({ email: "" });
-
   const [recipe, setRecipe] = useState({
     _id: "",
     creator: "",
@@ -32,14 +30,6 @@ const EditRecipe = () => {
         console.log("Making an API request");
         const recipe = await API.grabRecipeById(recipeId);
         setRecipe(recipe.data);
-        // if (user) {
-        //   setUserEmail(user.email);
-        // }
-        // if (recipe.owner !== userEmail.email) {
-        //   console.log("Owner !== user");
-        // } else {
-        //   console.log("Owner === user");
-        // }
       } catch (err) {
         console.log(err);
       }
@@ -47,7 +37,26 @@ const EditRecipe = () => {
     fetchRecipeById(recipeId);
   }, [recipeId]);
 
-  console.log(recipe);
+//   useEffect(() => {
+//     const compareUserToOwner = () => {
+//       let userEmail = "";
+
+//       if (user) {
+//         userEmail = user.email;
+//         if (userEmail !== recipe.owner) {
+//           console.log("User Email doesn't match recipe owner.");
+//           history.push("/");
+//         } else {
+//           console.log("User Email matches recipe owner.");
+//           return;
+//         }
+//       } else {
+//         console.log("No user logged in");
+//       }
+//     };
+
+//     compareUserToOwner();
+//   }, [user, recipe.owner, history]);
 
   const handleHeadingChange = (e) => {
     const updatedRecipe = { ...recipe };
