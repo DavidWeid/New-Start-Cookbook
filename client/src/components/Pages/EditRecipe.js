@@ -37,26 +37,26 @@ const EditRecipe = () => {
     fetchRecipeById(recipeId);
   }, [recipeId]);
 
-//   useEffect(() => {
-//     const compareUserToOwner = () => {
-//       let userEmail = "";
+  //   useEffect(() => {
+  //     const compareUserToOwner = () => {
+  //       let userEmail = "";
 
-//       if (user) {
-//         userEmail = user.email;
-//         if (userEmail !== recipe.owner) {
-//           console.log("User Email doesn't match recipe owner.");
-//           history.push("/");
-//         } else {
-//           console.log("User Email matches recipe owner.");
-//           return;
-//         }
-//       } else {
-//         console.log("No user logged in");
-//       }
-//     };
+  //       if (user) {
+  //         userEmail = user.email;
+  //         if (userEmail !== recipe.owner) {
+  //           console.log("User Email doesn't match recipe owner.");
+  //           history.push("/");
+  //         } else {
+  //           console.log("User Email matches recipe owner.");
+  //           return;
+  //         }
+  //       } else {
+  //         console.log("No user logged in");
+  //       }
+  //     };
 
-//     compareUserToOwner();
-//   }, [user, recipe.owner, history]);
+  //     compareUserToOwner();
+  //   }, [user, recipe.owner, history]);
 
   const handleHeadingChange = (e) => {
     const updatedRecipe = { ...recipe };

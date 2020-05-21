@@ -1,5 +1,5 @@
 import React from "react";
-// import DataAPI from "../DataAPI";
+import API from "../../utils/API";
 import "../CSS/pages.css";
 
 const Search = () => {

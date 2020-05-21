@@ -4,6 +4,7 @@ import "../CSS/pages.css";
 import { useParams } from "react-router-dom";
 import { useAuth0 } from "../../react-auth0-wrapper";
 import RecipeOptionsNav from "../RecipeOptionsNav";
+import Timers from "../Timers";
 
 const Recipe = () => {
   const params = useParams();
@@ -42,6 +43,7 @@ const Recipe = () => {
 
   return (
     <div>
+      <Timers/>
       <h1>Recipe Page</h1>
       {/* RecipeOptionsNav handles the recipe navigation (save, edit, delete) */}
       <RecipeOptionsNav
