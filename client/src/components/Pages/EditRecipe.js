@@ -25,16 +25,27 @@ const EditRecipe = () => {
 
   useEffect(() => {
     console.log("Using an effect");
+    let isCancelled = false;
+
     const fetchRecipeById = async (recipeId) => {
       try {
-        console.log("Making an API request");
-        const recipe = await API.grabRecipeById(recipeId);
-        setRecipe(recipe.data);
+        if (!isCancelled) {
+          console.log("Making an API request");
+          const recipe = await API.grabRecipeById(recipeId);
+          setRecipe(recipe.data);
+        }
       } catch (err) {
-        console.log(err);
+        if (!isCancelled) {
+          throw err;
+        }
       }
     };
+
     fetchRecipeById(recipeId);
+
+    return () => {
+      isCancelled = true;
+    };
   }, [recipeId]);
 
   //   useEffect(() => {

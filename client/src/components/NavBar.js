@@ -12,8 +12,6 @@ const NavBar = () => {
 
   return (
     <nav id="navbar">
-      <button>Timers</button>
-
       <Link to="/">Cook Book</Link>
 
       <div className="dropdown">
