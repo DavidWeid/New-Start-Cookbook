@@ -1,6 +1,6 @@
 import React from "react";
 import API from "../../utils/API";
-import "../CSS/pages.css";
+import "../assets/css/pages.css";
 
 const Search = () => {
   return (

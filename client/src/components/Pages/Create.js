@@ -1,7 +1,7 @@
 import React from "react";
 import CreateRecipeForm from "../CreateRecipeForm";
 // import DataAPI from "../DataAPI";
-import "../CSS/pages.css";
+import "../assets/css/pages.css";
 
 const Create = () => {
   return (

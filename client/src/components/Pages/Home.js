@@ -2,7 +2,7 @@ import React, { Fragment, useState, useEffect } from "react";
 import { useAuth0 } from "../../react-auth0-wrapper";
 import API from "../../utils/API";
 import { Link } from "react-router-dom";
-import "../CSS/pages.css";
+import "../assets/css/pages.css";
 
 const Home = () => {
   const { isAuthenticated, user } = useAuth0();

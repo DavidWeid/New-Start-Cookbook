@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Fragment } from "react";
 import API from "../../utils/API";
-import "../CSS/pages.css";
+import "../assets/css/pages.css";
 import { useParams, useHistory } from "react-router-dom";
 import { useAuth0 } from "../../react-auth0-wrapper";
 import { useForm } from "react-hook-form";

@@ -2,7 +2,7 @@ import React, { Fragment, useState } from "react";
 import { useAuth0 } from "../react-auth0-wrapper";
 import API from "../utils/API";
 import { useForm } from "react-hook-form";
-import "./CSS/createRecipeForm.css";
+import "./assets/css/createRecipeForm.css"
 
 const CreateRecipeForm = () => {
   /*** Require User and Form ***/
