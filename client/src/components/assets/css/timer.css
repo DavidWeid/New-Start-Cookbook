@@ -1,0 +1,22 @@
+.keypad {
+  display: flex;
+  flex-direction: row;
+  width: 500px;
+  flex-wrap: wrap;
+}
+
+.key {
+  width: 33%;
+}
+
+.editButtonsDiv,
+.startPauseButtonsDiv {
+  display: flex;
+}
+
+.backButton,
+.resetButton,
+.startButton,
+.pauseButton {
+  width: 50%;
+}
