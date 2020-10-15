@@ -78,7 +78,7 @@ const Timers = () => {
 
   const startTimer = () => {
     let timeEntered = desiredTime;
-    let seconds = timeEntered
+    console.log(timeEntered); // [{ number: #, timeType: "h/m/s"}] up to length 6
   };
 
   const pauseTimer = () => {};
