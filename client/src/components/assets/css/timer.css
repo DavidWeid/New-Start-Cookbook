@@ -16,6 +16,7 @@
 
 .backButton,
 .resetButton,
+.noButton,
 .startButton,
 .pauseButton {
   width: 50%;

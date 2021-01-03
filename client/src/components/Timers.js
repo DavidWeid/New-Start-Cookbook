@@ -1,11 +1,62 @@
-import React, { Fragment, useState, useRef } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import "./assets/css/timer.css";
 
 const Timers = () => {
   const [hoursInput, setHoursInput] = useState("00");
-  const [minutesInput, setminutesInput] = useState("00");
-  const [secondsInput, setsecondsInput] = useState("00");
+  const [minutesInput, setMinutesInput] = useState("00");
+  const [secondsInput, setSecondsInput] = useState("00");
   const [userInput, setUserInput] = useState([]);
+  const [isRunning, setIsRunning] = useState(false);
+  const [isInProcessOfRunning, setIsInProcessOfRunning] = useState(false);
+
+  useEffect(() => {
+    console.log("isRunning", isRunning);
+
+    if (isRunning) {
+      const id = window.setInterval(() => {
+        console.log("tick");
+        setSecondsInput((secondsInput) => {
+          const nextSecond = (parseInt(secondsInput) - 1).toString();
+          if (nextSecond.length < 2) {
+            return `0${(parseInt(secondsInput) - 1).toString()}`;
+          } else if (nextSecond.length === 2) {
+            return (parseInt(secondsInput) - 1).toString();
+          }
+        });
+      }, 1000);
+      return () => window.clearInterval(id);
+    }
+    return;
+  }, [isRunning]);
+
+  // This effect checks for timer hitting 0 while running
+  // When running and the timer hits 0, set isRunning, isInProcessOfRunning to false
+  // set userInput and hours/minutes/secondsInput to pre-timer values
+  useEffect(() => {
+    if (isRunning) {
+      console.log("Run this effect on secondsInput while timer running change");
+      console.log("secondsInput", secondsInput);
+      console.log("userInput", userInput);
+      if (
+        hoursInput === "00" &&
+        minutesInput === "00" &&
+        secondsInput === "00"
+      ) {
+        console.log(
+          "hours, minutes, seconds should be 00",
+          hoursInput,
+          minutesInput,
+          secondsInput
+        );
+        setIsRunning(false);
+        setIsInProcessOfRunning(false);
+        setUserInput(userInput);
+        handleTimerStates(userInput);
+      }
+      return;
+    }
+    return;
+  }, [userInput, hoursInput, minutesInput, secondsInput, isRunning]);
 
   const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
@@ -53,64 +104,71 @@ const Timers = () => {
     currentInput.length = 0;
     setUserInput(currentInput);
     handleTimerStates(currentInput);
+    setIsRunning(false);
+    setIsInProcessOfRunning(false);
   };
 
   const startTimer = () => {
     console.log("Start Clicked");
+    console.log(`${hoursInput}:${minutesInput}:${secondsInput}`);
+    setIsRunning(true);
+    setIsInProcessOfRunning(true);
   };
 
   const pauseTimer = () => {
     console.log("Pause Clicked");
+    console.log(`${hoursInput}:${minutesInput}:${secondsInput}`);
+    setIsRunning(false);
   };
 
   const handleTimerStates = (userInput) => {
     console.log("handleTimerStates running");
     if (userInput.length === 0) {
-      setsecondsInput("00");
-      setminutesInput("00");
+      setSecondsInput("00");
+      setMinutesInput("00");
       setHoursInput("00");
 
       return;
     } else if (userInput.length === 1) {
-      setsecondsInput(`0${userInput[0].toString()}`);
-      setminutesInput("00");
+      setSecondsInput(`0${userInput[0].toString()}`);
+      setMinutesInput("00");
       setHoursInput("00");
 
       return;
     } else if (userInput.length === 2) {
-      setsecondsInput(`${userInput[0].toString()}${userInput[1].toString()}`);
-      setminutesInput("00");
+      setSecondsInput(`${userInput[0].toString()}${userInput[1].toString()}`);
+      setMinutesInput("00");
       setHoursInput("00");
 
       return;
     } else if (userInput.length === 3) {
-      setsecondsInput(`${userInput[1].toString()}${userInput[2].toString()}`);
-      setminutesInput(`0${userInput[0].toString()}`);
+      setSecondsInput(`${userInput[1].toString()}${userInput[2].toString()}`);
+      setMinutesInput(`0${userInput[0].toString()}`);
       setHoursInput("00");
 
       return;
     } else if (userInput.length === 4) {
-      setsecondsInput(`${userInput[2].toString()}${userInput[3].toString()}`);
-      setminutesInput(`${userInput[0].toString()}${userInput[1].toString()}`);
+      setSecondsInput(`${userInput[2].toString()}${userInput[3].toString()}`);
+      setMinutesInput(`${userInput[0].toString()}${userInput[1].toString()}`);
       setHoursInput("00");
 
       return;
     } else if (userInput.length === 5) {
-      setsecondsInput(`${userInput[3].toString()}${userInput[4].toString()}`);
-      setminutesInput(`${userInput[1].toString()}${userInput[2].toString()}`);
+      setSecondsInput(`${userInput[3].toString()}${userInput[4].toString()}`);
+      setMinutesInput(`${userInput[1].toString()}${userInput[2].toString()}`);
       setHoursInput(`0${userInput[0].toString()}`);
 
       return;
     } else if (userInput.length === 6) {
-      setsecondsInput(`${userInput[4].toString()}${userInput[5].toString()}`);
-      setminutesInput(`${userInput[2].toString()}${userInput[3].toString()}`);
+      setSecondsInput(`${userInput[4].toString()}${userInput[5].toString()}`);
+      setMinutesInput(`${userInput[2].toString()}${userInput[3].toString()}`);
       setHoursInput(`${userInput[0].toString()}${userInput[1].toString()}`);
 
       return;
     } else {
       console.log("userInput greater than 6");
-      setsecondsInput("00");
-      setminutesInput("00");
+      setSecondsInput("00");
+      setMinutesInput("00");
       setHoursInput("00");
       setUserInput([]);
       return;
@@ -132,12 +190,17 @@ const Timers = () => {
     <Fragment>
       <button>Timers</button>
       <div className="keypad">
-        {numberedButtons}
+        {isInProcessOfRunning ? <div></div> : <div>{numberedButtons}</div>}
+
         <div className="key">
           <div className="editButtonsDiv">
-            <button className="backButton" onClick={undoLastTimerKey}>
-              Back
-            </button>{" "}
+            {!isInProcessOfRunning && userInput.length > 0 ? (
+              <button className="backButton" onClick={undoLastTimerKey}>
+                Back
+              </button>
+            ) : (
+              <div className="noButton"></div>
+            )}
             <button className="resetButton" onClick={resetTimer}>
               Reset
             </button>
@@ -145,12 +208,15 @@ const Timers = () => {
         </div>
         <div className="key">
           <div className="startPauseButtonsDiv">
-            <button className="startButton" onClick={startTimer}>
-              Start
-            </button>
-            <button className="pauseButton" onClick={pauseTimer}>
-              Pause
-            </button>
+            {isRunning ? (
+              <button className="startButton" onClick={pauseTimer}>
+                Pause
+              </button>
+            ) : (
+              <button className="pauseButton" onClick={startTimer}>
+                Start
+              </button>
+            )}
           </div>
         </div>
       </div>
