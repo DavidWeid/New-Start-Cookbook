@@ -12,31 +12,69 @@ const Timers = () => {
   useEffect(() => {
     console.log("isRunning", isRunning);
 
+    // if timer is running, check the time
     if (isRunning) {
-      const id = window.setInterval(() => {
-        console.log("tick");
-        setSecondsInput((secondsInput) => {
-          const nextSecond = (parseInt(secondsInput) - 1).toString();
-          if (nextSecond.length < 2) {
-            return `0${(parseInt(secondsInput) - 1).toString()}`;
-          } else if (nextSecond.length === 2) {
-            return (parseInt(secondsInput) - 1).toString();
-          }
-        });
-      }, 1000);
-      return () => window.clearInterval(id);
+      // if there are seconds
+      if (secondsInput !== "00") {
+        // reduce seconds by 1 / second
+        const id = window.setInterval(() => {
+          console.log("tick");
+          setSecondsInput((secondsInput) => {
+            const nextSecond = (parseInt(secondsInput) - 1).toString();
+
+            if (nextSecond.length < 2) {
+              return `0${nextSecond}`;
+            } else if (nextSecond.length === 2) {
+              return nextSecond;
+            }
+          });
+        }, 1000);
+        return () => window.clearInterval(id);
+
+        // if seconds is 0
+      } else if (secondsInput === "00") {
+        // if there are minutes
+        if (minutesInput !== "00") {
+          // reduce minutes by 1
+          setMinutesInput((minutesInput) => {
+            const nextMinute = (parseInt(minutesInput) - 1).toString();
+            if (nextMinute.length < 2) {
+              return `0${nextMinute}`;
+            } else if (nextMinute.length === 2) {
+              return nextMinute;
+            }
+          });
+          // set seconds to 59
+          setSecondsInput(59);
+
+          // if minutes is 0
+        } else if (minutesInput === "00") {
+          // reduce hours by 1
+          setHoursInput((hoursInput) => {
+            const nextHour = (parseInt(hoursInput) - 1).toString();
+            if (nextHour.length < 2) {
+              return `0${nextHour}`;
+            } else if (nextHour.length === 2) {
+              return nextHour;
+            }
+          });
+          // set minutes and seconds to 59
+          setMinutesInput(59);
+          setSecondsInput(59);
+        }
+      }
     }
     return;
-  }, [isRunning]);
+  }, [hoursInput, minutesInput, secondsInput, isRunning]);
 
-  // This effect checks for timer hitting 0 while running
+  // This effect checks for timer hitting 0 while running (00:00:00)
   // When running and the timer hits 0, set isRunning, isInProcessOfRunning to false
   // set userInput and hours/minutes/secondsInput to pre-timer values
   useEffect(() => {
     if (isRunning) {
-      console.log("Run this effect on secondsInput while timer running change");
+      console.log("Run this effect on timeInput change while timer running");
+      console.log("minutesInput", minutesInput);
       console.log("secondsInput", secondsInput);
-      console.log("userInput", userInput);
       if (
         hoursInput === "00" &&
         minutesInput === "00" &&
@@ -122,7 +160,9 @@ const Timers = () => {
   };
 
   const handleTimerStates = (userInput) => {
-    console.log("handleTimerStates running");
+    console.log(
+      "handleTimerStates running (userInput (array of numbers) converted to timeInputs (state strings hh, mm, ss)"
+    );
     if (userInput.length === 0) {
       setSecondsInput("00");
       setMinutesInput("00");
