@@ -1,6 +1,6 @@
 import Axios from "axios";
 
-export default {
+const API = {
   testAllPeople() {
     const getAllPeople = Axios.get("/api/test/test-data");
     return getAllPeople;
@@ -28,5 +28,7 @@ export default {
   deleteRecipeById(id) {
     const deleteRecipeById = Axios.delete(`/api/recipe/delete/${id}`);
     return deleteRecipeById;
-  },
+  }
 };
+
+export default API;
