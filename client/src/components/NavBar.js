@@ -1,4 +1,5 @@
 import React from "react";
+import Timers from "./Timers";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "../react-auth0-wrapper";
 import OutsideAlerter from "./OutsideAlerter";
@@ -12,6 +13,9 @@ const NavBar = () => {
 
   return (
     <nav id="navbar">
+
+      <Timers />
+
       <Link to="/">Cook Book</Link>
 
       <div className="dropdown">

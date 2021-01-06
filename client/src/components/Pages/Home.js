@@ -2,7 +2,6 @@ import React, { Fragment, useState, useEffect } from "react";
 import { useAuth0 } from "../../react-auth0-wrapper";
 import API from "../../utils/API";
 import { Link } from "react-router-dom";
-import Timers from "../Timers";
 import "../assets/css/pages.css";
 
 const Home = () => {
@@ -35,7 +34,6 @@ const Home = () => {
         <div>
           <h1>Please login to save and create recipes!</h1>
           <Link to="/search">Browse Recipes</Link>
-          <Timers />
         </div>
       )}
       {isAuthenticated && user && (

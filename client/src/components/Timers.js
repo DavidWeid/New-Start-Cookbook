@@ -90,11 +90,20 @@ const Timers = () => {
         setIsInProcessOfRunning(false);
         setUserInput(userInput);
         handleTimerStates(userInput);
+        toggleTimerModuleAlert();
       }
       return;
     }
     return;
   }, [userInput, hoursInput, minutesInput, secondsInput, isRunning]);
+
+  const toggleTimerModule = () => {
+    document.getElementById("timerModule").classList.toggle("displayNone");
+  };
+
+  const toggleTimerModuleAlert = () => {
+    document.getElementById("timerModuleAlert").classList.toggle("displayNone");
+  };
 
   const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
@@ -228,41 +237,47 @@ const Timers = () => {
 
   return (
     <Fragment>
-      <button>Timers</button>
-      <div className="keypad">
-        {isInProcessOfRunning ? <div></div> : <div>{numberedButtons}</div>}
+      <button onClick={() => toggleTimerModule()}>Timers</button>
+      <div id="timerModule" className="displayNone timerModule">
+        <div id="timerModuleAlert" className="displayNone timerModuleAlert">
+          <h2>Timer Finished</h2>
+          <button onClick={() => toggleTimerModuleAlert()}>Close</button>
+        </div>
+        <div className="keypad">
+          {isInProcessOfRunning ? <div></div> : <div>{numberedButtons}</div>}
 
-        <div className="key">
-          <div className="editButtonsDiv">
-            {!isInProcessOfRunning && userInput.length > 0 ? (
-              <button className="backButton" onClick={undoLastTimerKey}>
-                Back
+          <div className="key">
+            <div className="editButtonsDiv">
+              {!isInProcessOfRunning && userInput.length > 0 ? (
+                <button className="backButton" onClick={undoLastTimerKey}>
+                  Back
+                </button>
+              ) : (
+                <div className="noButton"></div>
+              )}
+              <button className="resetButton" onClick={resetTimer}>
+                Reset
               </button>
-            ) : (
-              <div className="noButton"></div>
-            )}
-            <button className="resetButton" onClick={resetTimer}>
-              Reset
-            </button>
+            </div>
+          </div>
+          <div className="key">
+            <div className="startPauseButtonsDiv">
+              {isRunning ? (
+                <button className="startButton" onClick={pauseTimer}>
+                  Pause
+                </button>
+              ) : (
+                <button className="pauseButton" onClick={startTimer}>
+                  Start
+                </button>
+              )}
+            </div>
           </div>
         </div>
-        <div className="key">
-          <div className="startPauseButtonsDiv">
-            {isRunning ? (
-              <button className="startButton" onClick={pauseTimer}>
-                Pause
-              </button>
-            ) : (
-              <button className="pauseButton" onClick={startTimer}>
-                Start
-              </button>
-            )}
-          </div>
-        </div>
+        <br />
+        <br />
+        {hoursInput} : {minutesInput} : {secondsInput}
       </div>
-      <br />
-      <br />
-      {hoursInput} : {minutesInput} : {secondsInput}
     </Fragment>
   );
 };
