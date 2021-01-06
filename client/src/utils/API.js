@@ -9,6 +9,14 @@ const API = {
     const getSinglePersonById = Axios.get(`/api/test/test-data/${personId}`);
     return getSinglePersonById;
   },
+  grabAllRecipeTags() {
+    const getAllRecipeTags = Axios.get("/api/recipe/tags/");
+    return getAllRecipeTags;
+  },
+  grabAllRecipesByTag(tag) {
+    const getAllRecipesByTag = Axios.get(`/api/recipe/tags/${tag}`);
+    return getAllRecipesByTag;
+  },
   grabRecipesForUser(email) {
     const getAllRecipesByEmail = Axios.get(`/api/recipe/mine/${email}`);
     return getAllRecipesByEmail;

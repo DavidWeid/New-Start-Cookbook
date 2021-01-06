@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const { restart } = require("nodemon");
 const Recipe = require("../../models/Recipe");
 
 // route for ./api/recipe/
@@ -11,7 +12,50 @@ router.get("/", async (req, res) => {
   } catch (err) {
     res.status(400).json({
       message: "Error on route",
-      err,
+      err
+    });
+  }
+});
+
+// get all recipe tags
+router.get("/tags", async (req, res) => {
+  try {
+    const allRecipes = await Recipe.find();
+    console.log("All Recipeps Grabbed");
+
+    const recipeIdTags = allRecipes.map((recipe) => {
+      return { id: recipe.id, tags: recipe.tags };
+    });
+
+    const allTags = [];
+
+    for (let i = 0; i < recipeIdTags.length; i++) {
+      for (let j = 0; j < recipeIdTags[i].tags.length; j++) {
+        allTags.push(recipeIdTags[i].tags[j]);
+      }
+    }
+
+    const uniqueTags = [...new Set(allTags)];
+
+    res.status(200).json(uniqueTags);
+  } catch (err) {
+    res.status(400).json({
+      message: "Error on route",
+      err
+    });
+  }
+});
+
+// get all recipes by tag
+router.get("/tags/:tag", async (req, res) => {
+  try {
+    const allRecipesByTag = await Recipe.find({ tags: req.params.tag });
+    console.log(`Recipes Grabbed by Tag: ${req.params.tag}`);
+    res.status(200).json(allRecipesByTag);
+  } catch (err) {
+    res.status(400).json({
+      message: "Error on route",
+      err
     });
   }
 });
@@ -25,7 +69,7 @@ router.get("/mine/:email", async (req, res) => {
   } catch (err) {
     res.status(400).json({
       message: "Error on route",
-      err,
+      err
     });
   }
 });
@@ -39,7 +83,7 @@ router.get("/view/:id", async (req, res) => {
   } catch (err) {
     res.status(400).json({
       message: "Error on route",
-      err,
+      err
     });
   }
 });
@@ -54,7 +98,7 @@ router.post("/create/", async (req, res) => {
   } catch (err) {
     res.status(400).json({
       message: "Error on route",
-      err,
+      err
     });
   }
 });
@@ -72,7 +116,7 @@ router.put("/update/", async (req, res) => {
   } catch (err) {
     res.status(400).json({
       message: "Error on route",
-      err,
+      err
     });
   }
 });
@@ -81,14 +125,14 @@ router.put("/update/", async (req, res) => {
 router.delete("/delete/:id", async (req, res) => {
   try {
     const deleteRecipeById = await Recipe.findByIdAndDelete({
-      _id: req.params.id,
+      _id: req.params.id
     });
     console.log(`Recipe Deleted By Id: ${req.params.id}`);
     res.status(200).json(deleteRecipeById);
   } catch (err) {
     res.status(400).json({
       message: "Error on route",
-      err,
+      err
     });
   }
 });
