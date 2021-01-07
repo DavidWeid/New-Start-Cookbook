@@ -1,0 +1,44 @@
+.container-fullwidth {
+  width: 100%;
+  padding: 1.25rem 0;
+}
+
+.container-fullwidth--muted-light {
+  width: 100%;
+  padding: 1.25rem 0;
+  background-color: var(--main-muted-light-color);
+}
+
+.container-fullwidth--muted-medium {
+  width: 100%;
+  padding: 1.25rem 0;
+  background-color: var(--main-muted-medium-color);
+}
+
+.container-fullwidth--muted-dark {
+  width: 100%;
+  padding: 1.25rem 0;
+  background-color: var(--main-muted-dark-color);
+}
+
+.container-fullwidth--accent-red {
+  width: 100%;
+  padding: 1.25rem 0;
+  background-color: var(--main-accent-red-color);
+}
+
+.container-fullwidth--accent-orange {
+  width: 100%;
+  padding: 1.25rem 0;
+  background-color: var(--main-accent-orange-color);
+}
+
+.container-fullwidth--accent-green {
+  width: 100%;
+  padding: 1.25rem 0;
+  background-color: var(--main-accent-green-color);
+}
+
+.bg-muted-dark {
+    background-color: var(--main-muted-dark-color);
+}

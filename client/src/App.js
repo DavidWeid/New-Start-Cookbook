@@ -8,6 +8,7 @@ import EditRecipe from "./components/Pages/EditRecipe";
 import Profile from "./components/Pages/Profile";
 import Recipe from "./components/Pages/Recipe";
 import Search from "./components/Pages/Search";
+import "./App.css";
 
 function App() {
   return (

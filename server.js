@@ -33,10 +33,11 @@ mongoose.connect(
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    autoIndex: false,
+    autoIndex: false
   }
 );
 
+// connect to db and add seed data
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
 db.once("open", function () {
@@ -44,21 +45,21 @@ db.once("open", function () {
   let usersArr = [];
   const troye = new models.User({
     username: "Troye",
-    email: "troye@mailer.com",
+    email: "troye@mailer.com"
   });
   const eric = new models.User({
     username: "Zijin",
-    email: "zijin@mailer.com",
+    email: "zijin@mailer.com"
   });
   const david = new models.User({
     username: "David",
-    email: "david@mailer.com",
+    email: "david@mailer.com"
   });
-  const kristin = new models.User({
-    username: "Kristin",
-    email: "kristin@mailer.com",
+  const chad = new models.User({
+    username: "Chad",
+    email: "chad@mailer.com"
   });
-  usersArr.push(troye, eric, david, kristin);
+  usersArr.push(troye, eric, david, chad);
   usersArr.forEach((userSeed) => {
     User.find({ username: userSeed.username }, function (err, user) {
       if (err) return console.error(err);
@@ -79,15 +80,15 @@ db.once("open", function () {
     description: "Just the best Fried Rice!",
     ingredients: [
       { amount: "5 cups", ingredient: "Rice" },
-      { amount: "1 cups", ingredient: "Everything else." },
+      { amount: "1 cups", ingredient: "Everything else." }
     ],
     instructionSteps: [
       "Add oil",
       "Heat oil. Add rice.",
       "Fry rice",
-      "Add everything else",
+      "Add everything else"
     ],
-    tags: ["rice", "asian"],
+    tags: ["rice", "asian"]
   });
   const recipe2 = new models.Recipe({
     creator: "zijin@mailer.com",
@@ -96,15 +97,15 @@ db.once("open", function () {
     description: "Just Fried Rice!",
     ingredients: [
       { amount: "5 cups", ingredient: "Rice" },
-      { amount: "1 cups", ingredient: "Everything else." },
+      { amount: "1 cups", ingredient: "Everything else." }
     ],
     instructionSteps: [
       "Add oil",
       "Heat oil. Add rice.",
       "Fry rice",
-      "Add everything else",
+      "Add everything else"
     ],
-    tags: ["rice", "asian"],
+    tags: ["rice", "asian"]
   });
 
   Recipe.find({ title: recipe1.title }, function (err, recipe) {

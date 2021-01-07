@@ -8,13 +8,13 @@ const checkJwt = jwt({
     cache: true,
     rateLimit: true,
     jwksRequestsPerMinute: 5,
-    jwksUri: `https://dev-1j31wh9w.auth0.com/.well-known/jwks.json`,
+    jwksUri: `https://dev-1j31wh9w.auth0.com/.well-known/jwks.json`
   }),
 
   // Validate the audience and the issuer
   audience: "eBBXOoLfQniXxHbXEaZqMOuiTvtaJug9",
   issuer: `https://dev-1j31wh9w.auth0.com/`,
-  algorithms: ["RS256"],
+  algorithms: ["RS256"]
 });
 
 // route for ./api/test/
@@ -29,7 +29,7 @@ router.get("/test-data", async (req, res) => {
   } catch (err) {
     res.status(400).json({
       message: "Some error occured",
-      err,
+      err
     });
   }
 });
@@ -45,7 +45,7 @@ router.get("/test-data/:id", async (req, res) => {
   } catch (err) {
     res.status(400).json({
       message: "Some error occured",
-      err,
+      err
     });
   }
 });
@@ -59,7 +59,7 @@ router.post("/test-data", checkJwt, async (req, res) => {
   } catch (err) {
     res.status(400).json({
       message: err.message,
-      err,
+      err
     });
   }
 });

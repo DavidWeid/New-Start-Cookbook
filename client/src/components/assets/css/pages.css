@@ -1,7 +1,8 @@
+/* Recipe Page */
 .marked {
-    color: red;
+  color: var(--main-accent-red-color);
 }
 
 .unmarked {
-    color: black;
+  color: var(--main-muted-dark-color);
 }

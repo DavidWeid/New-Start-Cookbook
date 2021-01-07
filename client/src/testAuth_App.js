@@ -10,12 +10,12 @@ const initialState = {
   meetup: {
     title: "Auth0 Online Meetup",
     date: Date(),
-    attendees: ["David", "Eric", "Kristin", "Chad"],
+    attendees: ["David", "Eric", "Kristin", "Chad"]
   },
   user: {
     nickname: "Boy Troye",
-    name: "Troye",
-  },
+    name: "Troye"
+  }
 };
 
 const reducer = (state, action) => {
@@ -24,7 +24,7 @@ const reducer = (state, action) => {
       return {
         ...state,
         attendees: [...state.attendees, action.payload],
-        subscribed: true,
+        subscribed: true
       };
     case "unsubscribeUser":
       return {
@@ -32,13 +32,13 @@ const reducer = (state, action) => {
         attendees: state.attendees.filter(
           (attendee) => attendee !== action.payload
         ),
-        subscribed: false,
+        subscribed: false
       };
     case "loginUser":
       return {
         ...state,
         isAuthenticated: action.payload.authenticated,
-        name: action.payload.user.nickname,
+        name: action.payload.user.nickname
       };
     default:
       return state;
@@ -52,15 +52,15 @@ const UserContextProvider = (props) => {
       type: "loginUser",
       payload: {
         authenticated: true,
-        user: auth.getProfile(),
-      },
+        user: auth.getProfile()
+      }
     });
   });
   return (
     <UserContext.Provider
       value={{
         ...state,
-        handleLogin: auth.signIn,
+        handleLogin: auth.signIn
       }}
     >
       {props.children}
@@ -77,7 +77,7 @@ const MeetupContextProvider = ({ user, ...props }) => {
         handleSubscribe: () =>
           dispatch({ type: "subscribeUser", payload: user.name }),
         handleUnsubscribe: () =>
-          dispatch({ type: "unsubscribeUser", payload: user.name }),
+          dispatch({ type: "unsubscribeUser", payload: user.name })
       }}
     >
       {props.children}

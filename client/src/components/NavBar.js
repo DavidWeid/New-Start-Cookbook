@@ -12,34 +12,49 @@ const NavBar = () => {
   };
 
   return (
-    <nav id="navbar">
+    <nav id="navbar" className="container-fullwidth--muted-dark">
+      <div className="container-navbar">
+        <Timers />
 
-      <Timers />
+        <Link to="/" className="light">
+          Cook Book
+        </Link>
 
-      <Link to="/">Cook Book</Link>
+        <div className="dropdown">
+          <button className="btn-drop" onClick={() => dropdownMenu()}>
+            Profile
+          </button>
+          <div id="profile-dropdown" className="dropdown-content">
+            <OutsideAlerter>
+              {!isAuthenticated && (
+                <div className="dropdown-container">
+                  <button onClick={() => loginWithRedirect({})}>Log in</button>
+                </div>
+              )}
 
-      <div className="dropdown">
-        <button className="btn-drop" onClick={() => dropdownMenu()}>
-          Profile
-        </button>
-        <div id="profile-dropdown" className="dropdown-content">
-          <OutsideAlerter>
-            {!isAuthenticated && (
-              <button onClick={() => loginWithRedirect({})}>Log in</button>
-            )}
-
-            {isAuthenticated && (
-              <button onClick={() => logout()}>Log out</button>
-            )}
-            {isAuthenticated && (
-              <div className="nav-links">
-                <Link to="/">Home</Link>
-                <Link to="/profile">Profile</Link>
-                <Link to="/create">Create</Link>
-                <Link to="/search">Search</Link>
-              </div>
-            )}
-          </OutsideAlerter>
+              {isAuthenticated && (
+                <div className="dropdown-container">
+                  <button onClick={() => logout()}>Log out</button>
+                </div>
+              )}
+              {isAuthenticated && (
+                <div className="dropdown-container nav-links bg-muted-dark">
+                  <Link to="/" className="light">
+                    Home
+                  </Link>
+                  <Link to="/profile" className="light">
+                    Profile
+                  </Link>
+                  <Link to="/create" className="light">
+                    Create
+                  </Link>
+                  <Link to="/search" className="light">
+                    Search
+                  </Link>
+                </div>
+              )}
+            </OutsideAlerter>
+          </div>
         </div>
       </div>
     </nav>

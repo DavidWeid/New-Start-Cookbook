@@ -1,42 +1,25 @@
-* {
-  background-color: rgba(255, 0, 0, 0.2);
-}
-* * {
-  background-color: rgba(0, 255, 0, 0.2);
-}
-* * * {
-  background-color: rgba(0, 0, 255, 0.2);
-}
-* * * * {
-  background-color: rgba(255, 0, 255, 0.2);
-}
-* * * * * {
-  background-color: rgba(0, 255, 255, 0.2);
-}
-* * * * * * {
-  background-color: rgba(255, 255, 0, 0.2);
-}
-* * * * * * * {
-  background-color: rgba(255, 0, 0, 0.2);
-}
-* * * * * * * * {
-  background-color: rgba(0, 255, 0, 0.2);
-}
-* * * * * * * * * {
-  background-color: rgba(0, 0, 255, 0.2);
-}
-
 :root {
   tab-size: 4;
-  --main-light-color: #3a5a81;
-  --main-dark-color: #252131;
-  --main-accent-color: #d31336;
+  /* Main Muted Colors */
+  --main-muted-light-color: #b3bbb6;
+  --main-muted-medium-color: #676163;
+  --main-muted-dark-color: #151220;
+  /* Main Accent Colors */
+  --main-accent-red-color: #fa2d25;
+  --main-accent-orange-color: #f99127;
+  --main-accent-green-color: #b0cb46;
+  /* Main Dark Accent Colors */
+  --main-accent-dark-red-color: #960d08;
+  --main-accent-dark-orange-color: #823000;
+  --main-accent-dark-green-color: #054e21;
 }
 
 html {
   box-sizing: border-box;
-  /* em - size text bottoms out at; vw - how responsive to viwport width */
+  /* fall-back font size: font-size bottoms out at 0.95em and vw is how responsive to viwport width */
   font-size: calc(0.95em + 0.75vw);
+  /* minimum font-size is 16px (1rem) and maximum font size is 22px */
+  font-size: min(max(1rem, 4vw), 22px);
   line-height: 1.15;
 }
 
@@ -83,4 +66,25 @@ h5,
 h6,
 p {
   margin-top: 0;
+}
+
+a.light {
+  text-decoration: none;
+  color: var(--main-accent-orange-color);
+}
+
+a.dark {
+  text-decoration: none;
+  color: var(--main-accent-dark-orange-color);
+}
+
+button {
+  cursor: pointer;
+  background-color: white;
+  border-radius: 0;
+  border: none;
+}
+
+button:focus {
+  outline: none;
 }
