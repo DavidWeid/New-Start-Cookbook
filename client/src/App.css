@@ -1,3 +1,6 @@
+/*  
+----- Container properties -----
+*/
 .container-fullwidth {
   width: 100%;
   padding: 1.25rem 0;
@@ -39,6 +42,123 @@
   background-color: var(--main-accent-green-color);
 }
 
+.container {
+  width: 98%;
+  max-width: 1500px;
+  margin: 0 auto;
+}
+
+/*  
+----- Display / Flexbox properties -----
+*/
+
+.display-none {
+  display: none;
+}
+
+.display-flex {
+  display: flex;
+}
+
+.flex-direction-column {
+  flex-direction: column;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-space-between {
+  justify-content: space-between;
+}
+
+.align-center {
+  align-items: center;
+}
+
+/*  
+----- Padding properties -----
+*/
+
+.padtophalf {
+  padding-top: 0.5rem;
+}
+
+.padbothalf {
+  padding-bottom: 0.5rem;
+}
+
+.padtop1 {
+  padding-top: 1rem;
+}
+
+.padbot1 {
+  padding-bottom: 1rem;
+}
+
+/*  
+----- Text properties -----
+*/
+
+.text-align-center {
+  text-align: center;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.text-dark-green {
+    color: var(--main-accent-dark-green-color);
+}
+
+.text-muted-dark {
+    color: var(--main-muted-dark-color);
+}
+
+.text-dark-orange {
+    color: var(--main-accent-dark-orange-color);
+}
+
+/*  
+----- Background properties -----
+*/
+
+.bg-muted-light {
+  background-color: var(--main-muted-light-color);
+}
+
+.bg-muted-medium {
+  background: var(--main-muted-medium-color);
+}
+
 .bg-muted-dark {
-    background-color: var(--main-muted-dark-color);
+  background-color: var(--main-muted-dark-color);
+}
+
+/*  
+----- Button properties -----
+*/
+
+.btn-orange {
+  color: var(--main-muted-dark-color);
+  background-color: var(--main-accent-orange-color);
+}
+
+.btn-orange:hover {
+  color: white;
+  background-color: var(--main-accent-dark-orange-color);
+}
+
+.btn-dark {
+  color: var(--main-accent-orange-color);
+  background-color: var(--main-muted-dark-color);
+}
+
+.btn-dark:hover {
+  color: white;
 }

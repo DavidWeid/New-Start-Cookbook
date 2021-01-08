@@ -21,6 +21,7 @@ html {
   /* minimum font-size is 16px (1rem) and maximum font size is 22px */
   font-size: min(max(1rem, 4vw), 22px);
   line-height: 1.15;
+  background-color: #f8f8ff;
 }
 
 *,
@@ -68,21 +69,56 @@ p {
   margin-top: 0;
 }
 
-a.light {
+/* link styles */
+a:hover {
+  border-bottom: 1px solid;
+}
+
+a.btn-link {
+  border-bottom: none;
+}
+
+/* link hovers */
+a.light-orange:hover,
+a.light-green:hover {
+  color: white;
+}
+
+a.dark-orange:hover,
+a.dark-green:hover {
+  color: var(--main-muted-dark-color);
+}
+
+/* link orange */
+a.light-orange {
   text-decoration: none;
   color: var(--main-accent-orange-color);
 }
-
-a.dark {
+a.dark-orange {
   text-decoration: none;
   color: var(--main-accent-dark-orange-color);
 }
 
+/* link green */
+a.light-green {
+  text-decoration: none;
+  color: var(--main-accent-green-color-green-color);
+}
+a.dark-green {
+  text-decoration: none;
+  color: var(--main-accent-dark-green-color);
+}
+
+/* button element */
 button {
   cursor: pointer;
   background-color: white;
   border-radius: 0;
   border: none;
+  padding: 0 1.25rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-size: 0.9rem;
 }
 
 button:focus {

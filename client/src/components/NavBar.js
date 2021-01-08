@@ -12,43 +12,59 @@ const NavBar = () => {
   };
 
   return (
-    <nav id="navbar" className="container-fullwidth--muted-dark">
-      <div className="container-navbar">
+    <nav
+      id="navbar"
+      className="container-fullwidth container-navbar bg-muted-dark"
+    >
+      <div className="container display-flex justify-space-between align-center">
         <Timers />
 
-        <Link to="/" className="light">
-          Cook Book
+        <Link to="/" className="light-orange text-align-center btn-link">
+          New Start Cook Book
         </Link>
 
         <div className="dropdown">
-          <button className="btn-drop" onClick={() => dropdownMenu()}>
+          <button
+            className="btn-drop btn-orange"
+            onClick={() => dropdownMenu()}
+          >
             Profile
           </button>
-          <div id="profile-dropdown" className="dropdown-content">
+          <div id="profile-dropdown" className="dropdown-content bg-muted-dark">
             <OutsideAlerter>
               {!isAuthenticated && (
-                <div className="dropdown-container">
-                  <button onClick={() => loginWithRedirect({})}>Log in</button>
+                <div className="display-flex">
+                  <button
+                    className="btn-dark padtop1 padbot1"
+                    onClick={() => loginWithRedirect({})}
+                  >
+                    Log in
+                  </button>
                 </div>
               )}
 
               {isAuthenticated && (
-                <div className="dropdown-container">
-                  <button onClick={() => logout()}>Log out</button>
+                <div className="display-flex">
+                  <button
+                    className="btn-dark padtop1 padbot1"
+                    onClick={() => logout()}
+                  >
+                    Log out
+                  </button>
                 </div>
               )}
               {isAuthenticated && (
-                <div className="dropdown-container nav-links bg-muted-dark">
-                  <Link to="/" className="light">
+                <div className="display-flex display-flex flex-direction-column align-center">
+                  <Link to="/" className="light-orange padtop1 padbot1">
                     Home
                   </Link>
-                  <Link to="/profile" className="light">
+                  <Link to="/profile" className="light-orange padtop1 padbot1">
                     Profile
                   </Link>
-                  <Link to="/create" className="light">
+                  <Link to="/create" className="light-orange padtop1 padbot1">
                     Create
                   </Link>
-                  <Link to="/search" className="light">
+                  <Link to="/search" className="light-orange padtop1 padbot1">
                     Search
                   </Link>
                 </div>
