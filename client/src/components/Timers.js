@@ -246,68 +246,80 @@ const Timers = () => {
       <button className="btn-orange" onClick={() => toggleTimerModule()}>
         Timers
       </button>
-      <div id="timerModule" className="display-none timer-module bg-muted-dark">
-        <div id="timerModuleAlert" className="display-none timerModuleAlert">
-          <h2>Timer Finished</h2>
-          <button onClick={() => toggleTimerModuleAlert()}>Close</button>
-        </div>
-        <div className="keypad">
-          {/* if timer is running, empty div, else show the numbered buttons (0-9) */}
-          {isInProcessOfRunning ? (
-            <div></div>
-          ) : (
-            <div className="display-flex flex-wrap">
-              {numberedButtons}{" "}
-              {/* if timer isn't in the process of running and user has entered a number, show the back button */}
-              {!isInProcessOfRunning && userInput.length > 0 ? (
-                <div
-                  className="key text-align-center"
-                  onClick={undoLastTimerKey}
-                >
-                  <span>Back</span>
+      <div id="timerModule" className="blur display-none">
+        <div className="timer-module bg-muted-dark">
+          <div
+            id="timerModuleAlert"
+            className="display-none timer-module-alert padtop2 padbot2"
+          >
+            <h2 className="text-muted-dark text-align-center">
+              Timer Finished
+            </h2>
+            <div
+              className="btn-close text-align-center"
+              onClick={() => toggleTimerModuleAlert()}
+            >
+              <span>Dismiss</span>
+            </div>
+          </div>
+          <div className="keypad">
+            {/* if timer is running, empty div, else show the numbered buttons (0-9) */}
+            {isInProcessOfRunning ? (
+              <div></div>
+            ) : (
+              <div className="display-flex flex-wrap">
+                {numberedButtons}{" "}
+                {/* if timer isn't in the process of running and user has entered a number, show the back button */}
+                {!isInProcessOfRunning && userInput.length > 0 ? (
+                  <div
+                    className="key text-align-center"
+                    onClick={undoLastTimerKey}
+                  >
+                    <span>Back</span>
+                  </div>
+                ) : (
+                  <div className="key">
+                    <span></span>
+                  </div>
+                )}
+                <div className="key text-align-center" onClick={resetTimer}>
+                  <span>Reset</span>
                 </div>
-              ) : (
-                <div className="key">
-                  <span></span>
-                </div>
-              )}
-              <div className="key text-align-center" onClick={resetTimer}>
+              </div>
+            )}
+
+            {/* if timer is running, show the pause button, else the start button */}
+            {isRunning ? (
+              <div
+                className="btn-start btn-orange text-align-center"
+                onClick={pauseTimer}
+              >
+                <span>Pause</span>
+              </div>
+            ) : (
+              <div
+                className="btn-pause btn-orange text-align-center"
+                onClick={startTimer}
+              >
+                <span>Start</span>
+              </div>
+            )}
+
+            {/* if timer is in process of running, show the reset button */}
+            {isInProcessOfRunning ? (
+              <div
+                className="btn-reset btn-dark text-align-center"
+                onClick={resetTimer}
+              >
                 <span>Reset</span>
               </div>
-            </div>
-          )}
-
-          {/* if timer is running, show the pause button, else the start button */}
-          {isRunning ? (
-            <div
-              className="btn-start btn-orange text-align-center"
-              onClick={pauseTimer}
-            >
-              <span>Pause</span>
-            </div>
-          ) : (
-            <div
-              className="btn-pause btn-orange text-align-center"
-              onClick={startTimer}
-            >
-              <span>Start</span>
-            </div>
-          )}
-
-          {/* if timer is in process of running, show the reset button */}
-          {isInProcessOfRunning ? (
-            <div
-              className="btn-reset btn-dark text-align-center"
-              onClick={resetTimer}
-            >
-              <span>Reset</span>
-            </div>
-          ) : (
-            <div></div>
-          )}
-        </div>
-        <div className="timer padtop1 padbot1 text-align-center">
-          {hoursInput} : {minutesInput} : {secondsInput}
+            ) : (
+              <div></div>
+            )}
+          </div>
+          <div className="timer padtop1 padbot1 text-align-center">
+            {hoursInput} : {minutesInput} : {secondsInput}
+          </div>
         </div>
       </div>
     </Fragment>
