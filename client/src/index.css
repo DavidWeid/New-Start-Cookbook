@@ -1,5 +1,7 @@
 :root {
   tab-size: 4;
+  --white: #f8f8ff;
+
   /* Main Muted Colors */
   --main-muted-light-color: #b3bbb6;
   --main-muted-medium-color: #676163;
@@ -21,7 +23,7 @@ html {
   /* minimum font-size is 16px (1rem) and maximum font size is 22px */
   font-size: min(max(1rem, 4vw), 22px);
   line-height: 1.15;
-  background-color: #f8f8ff;
+  background-color: var(--white);
 }
 
 *,
@@ -87,7 +89,7 @@ a.btn-link {
 /* link hovers */
 a.light-orange:hover,
 a.light-green:hover {
-  color: white;
+  color: var(--white);
 }
 
 a.dark-orange:hover,
@@ -118,7 +120,7 @@ a.dark-green {
 /* button element */
 button {
   cursor: pointer;
-  background-color: white;
+  background-color: var(--white);
   border-radius: 0;
   border: none;
   padding: 0 1.25rem;

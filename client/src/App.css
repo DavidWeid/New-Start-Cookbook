@@ -84,6 +84,14 @@
 ----- Padding properties -----
 */
 
+.paddinghalf {
+  padding: 0.5rem;
+}
+
+.padding1 {
+  padding: 1rem;
+}
+
 .padtophalf {
   padding-top: 0.5rem;
 }
@@ -106,6 +114,16 @@
 
 .padbot2 {
   padding-bottom: 2rem;
+}
+
+.padsideshalf {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.padsides1 {
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 /*  
@@ -168,7 +186,7 @@
 }
 
 .btn-orange:hover {
-  color: white;
+  color: var(--white);
   background-color: var(--main-accent-dark-orange-color);
 }
 
@@ -178,5 +196,5 @@
 }
 
 .btn-dark:hover {
-  color: white;
+  color: var(--white);
 }

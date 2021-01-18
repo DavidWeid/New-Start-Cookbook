@@ -1,3 +1,7 @@
+#timerModule {
+  z-index: 1;
+}
+
 .timer-module {
   position: fixed;
   top: 50%;
@@ -12,7 +16,7 @@
   transform: translate(-50%, -50%);
   width: 100%;
   height: 100%;
-  background-color: #f8f8ff;
+  background-color: var(--white);
 }
 
 .keypad {
@@ -23,8 +27,8 @@
 .key {
   width: 33.33%;
   padding: 1rem;
-  border: 1px solid white;
-  color: white;
+  border: 1px solid var(--white);
+  color: var(--white);
   cursor: pointer;
 }
 
@@ -41,5 +45,5 @@
 }
 
 .timer {
-  color: white;
+  color: var(--white);
 }

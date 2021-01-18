@@ -2,6 +2,7 @@ import React, { Fragment, useState, useEffect } from "react";
 import { useAuth0 } from "../../react-auth0-wrapper";
 import API from "../../utils/API";
 import { Link } from "react-router-dom";
+import RecipeCard from "../RecipeCard.js";
 import "../assets/css/pages.css";
 
 const Home = () => {
@@ -24,6 +25,14 @@ const Home = () => {
     fetchRecipes();
   }, [user]);
 
+  const displayRecipe = recipes.map((recipe) => {
+    return (
+      <div className="padding1">
+        <RecipeCard recipe={recipe} />
+      </div>
+    );
+  });
+
   return (
     <Fragment>
       {/* If user isn't authenticated, need to login to save & create */}
@@ -32,6 +41,7 @@ const Home = () => {
           <h1 className="text-muted-dark">
             Please{" "}
             <Link
+              to={""}
               className="dark-green btn-link"
               onClick={() => loginWithRedirect({})}
             >
@@ -60,21 +70,11 @@ const Home = () => {
             </p>
           </div>
 
-          <div className="container text-align-center padtop1 padbot1">
-            {recipes.map((recipe) => {
-              return (
-                <div className="padtop1 padbot1" key={recipe._id}>
-                  <h2>{recipe.title}</h2>
-                  <p>{recipe.description}</p>
-                  <Link to={`/recipe/${recipe._id}`} className="dark-green">
-                    View
-                  </Link>
-                </div>
-              );
-            })}
+          <div className="container display-flex flex-wrap justify-center padtop1 padbot1">
+            {displayRecipe}
           </div>
 
-          <div className="container text-align-center padtop1">
+          <div className="container text-align-center padtop1 padbot1">
             <Link to="/create" className="dark-green bold padbothalf">
               Create a recipe{" "}
             </Link>
