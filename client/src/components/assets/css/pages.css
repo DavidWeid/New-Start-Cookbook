@@ -1,3 +1,8 @@
+/* Home Page */
+.homepage-logo {
+  width: 75%;
+}
+
 /* Recipe Page */
 .marked {
   color: var(--main-accent-red-color);

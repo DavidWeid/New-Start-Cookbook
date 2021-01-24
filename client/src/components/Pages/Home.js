@@ -4,6 +4,7 @@ import API from "../../utils/API";
 import { Link } from "react-router-dom";
 import RecipeCard from "../RecipeCard.js";
 import "../assets/css/pages.css";
+import logo from "../assets/img/new-start-cookbook.svg";
 
 const Home = () => {
   const { isAuthenticated, user } = useAuth0();
@@ -27,7 +28,7 @@ const Home = () => {
 
   const displayRecipe = recipes.map((recipe) => {
     return (
-      <div className="padding1">
+      <div key={recipe._id} className="padding1 flip-card-container">
         <RecipeCard recipe={recipe} />
       </div>
     );
@@ -38,6 +39,15 @@ const Home = () => {
       {/* If user isn't authenticated, need to login to save & create */}
       {!isAuthenticated && (
         <div className="container text-align-center padtop1">
+          <div className="display-flex justify-center padbot1">
+            <img
+              className="homepage-logo"
+              src={logo}
+              alt="New Start Cook Book - A Genius Cook with a Good Book"
+              width="1333"
+              height="1000"
+            />
+          </div>
           <h1 className="text-muted-dark">
             Please{" "}
             <Link
