@@ -1,17 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./assets/css/recipeCard.css";
 
 const RecipeCard = (props) => {
   const recipe = props.recipe;
   const { _id, title, description, tags } = recipe;
-
-  const [clicked, setClicked] = useState(false);
-
-  const handleCardClick = () => {
-    setClicked(true);
-  };
-
+  
   const displayTags = tags.map((tag, idx) => {
     const arr = [];
 
@@ -26,14 +20,8 @@ const RecipeCard = (props) => {
     return arr;
   });
 
-  console.log(clicked);
-
   return (
-    <div
-      className={`flip-card ${clicked ? "flip" : ""}`}
-      onClick={() => handleCardClick()}
-      onAnimationEnd={() => setClicked(false)}
-    >
+    <div className="flip-card">
       <div className="flip-card-inner">
         <div className="flip-card-front display-flex justify-center align-center">
           <h2>{title}</h2>

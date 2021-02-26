@@ -126,6 +126,14 @@
   padding-right: 1rem;
 }
 
+.padright1 {
+  padding-right: 1rem;
+}
+
+.padleft1 {
+  padding-left: 1rem;
+}
+
 /*  
 ----- Text properties -----
 */
@@ -197,4 +205,12 @@
 
 .btn-dark:hover {
   color: var(--white);
+}
+
+/*
+----- Misc Props -----
+*/
+
+.rounded {
+  border-radius: 5px;
 }

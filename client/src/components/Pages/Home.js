@@ -46,6 +46,7 @@ const Home = () => {
               alt="New Start Cook Book - A Genius Cook with a Good Book"
               width="1333"
               height="1000"
+              loading="eager"
             />
           </div>
           <h1 className="text-muted-dark">
