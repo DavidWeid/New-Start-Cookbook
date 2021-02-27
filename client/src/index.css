@@ -24,6 +24,8 @@ html {
   font-size: min(max(1rem, 4vw), 22px);
   line-height: 1.15;
   background-color: var(--white);
+  color: var(--main-muted-dark-color);
+  /* user-select: none; */
 }
 
 *,

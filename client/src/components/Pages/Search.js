@@ -18,12 +18,17 @@ const Search = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const input = inputValue.trim();
+    const input = inputValue.trim().toLowerCase();
     if (input === "") {
       return;
     }
+
     fetchRecipesByTag(input);
     setInputValue("");
+  };
+
+  const returnToTags = () => {
+    setMatchingRecipes([]);
   };
 
   const fetchRecipeTags = async () => {
@@ -103,14 +108,14 @@ const Search = () => {
             <form onSubmit={handleSubmit}>
               <div className="display-flex justify-center">
                 <label htmlFor="recipe-search">
-                  <span style={{ display: "none" }}>Search recipes by tag</span>
+                  <span style={{ display: "none" }}>Find recipes by tag</span>
                 </label>
                 <input
                   className="rounded"
                   type="text"
                   value={inputValue}
                   onChange={recipeFilterOnChange}
-                  placeholder="Search Recipes by tag"
+                  placeholder="Find recipes by tag"
                 />
                 <div className="padleft1">
                   <button
@@ -132,7 +137,12 @@ const Search = () => {
           {matchingRecipes.length === 0 ? (
             <div>View receipes by tags: {initialRecipeTags}</div>
           ) : (
-            <div>{resultsFromSearch}</div>
+            <div>
+              <button onClick={returnToTags} className="btn-dark rounded">
+                Try tags again
+              </button>
+              {resultsFromSearch}
+            </div>
           )}
         </div>
       </div>
