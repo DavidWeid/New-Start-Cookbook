@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import "./assets/css/recipeCard.css";
 
 const RecipeCard = (props) => {
   const recipe = props.recipe;
   const { _id, title, description, tags } = recipe;
-  
+
   const displayTags = tags.map((tag, idx) => {
     const arr = [];
 

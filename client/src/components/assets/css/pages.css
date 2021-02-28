@@ -18,8 +18,26 @@ button.box-tag:hover {
   border-color: var(--main-accent-orange-color);
 }
 
+button.box-tag.no-hover {
+  background-color: white;
+  border-color: var(--main-muted-dark-color);
+  border-right: 6px solid var(--main-accent-orange-color);
+  cursor: default;
+  color: var(--main-accent-dark-green-color);
+}
+
 .search-result-card-container {
-  width: 48%;
+  width: 100%;
+}
+
+@media screen and (min-width: 501px) {
+  .search-result-card-container {
+    width: 48%;
+  }
+}
+
+.search-result-card-footer {
+  border-top: 1px solid var(--main-accent-dark-green-color);
 }
 
 /* Recipe Page */

@@ -82,8 +82,16 @@
 }
 
 /*  
------ Padding properties -----
+----- Padding & Margin Properties -----
 */
+
+.margin0 {
+  margin: 0;
+}
+
+.marginbothalf {
+  margin-bottom: 0.5rem;
+}
 
 .paddinghalf {
   padding: 0.5rem;

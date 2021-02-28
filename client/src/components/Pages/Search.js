@@ -75,8 +75,11 @@ const Search = () => {
     if (recipe._id) {
       const createRecipeTags = recipe.tags.map((tag, idx) => {
         return (
-          <p key={idx} className="padrighthalf">
-            <button className="box-tag paddinghalf text-small" key={tag}>
+          <p key={idx} className="padrighthalf marginbothalf">
+            <button
+              className="box-tag no-hover paddinghalf text-small"
+              key={tag}
+            >
               {tag}
             </button>
           </p>
@@ -96,22 +99,25 @@ const Search = () => {
                 <span>, owned by {recipe.owner}</span>
               )}
             </p>
-            {/* <p>Tags: {recipe.tags.join(", ")}</p> */}
-            <div className="display-flex">{createRecipeTags}</div>
-            <p>
-              <Link
-                className="dark-green padbothalf"
-                to={`/recipe/${recipe._id}`}
-              >
-                View
-              </Link>
-            </p>
+            <div className="display-flex flex-wrap padbothalf">
+              {createRecipeTags}
+            </div>
+            <div className="search-result-card-footer padtophalf">
+              <p className="padtophalf margin0 text-align-center">
+                <Link
+                  className="dark-green padbothalf padsides1 semi-bold"
+                  to={`/recipe/${recipe._id}`}
+                >
+                  View
+                </Link>
+              </p>
+            </div>
           </div>
         </div>
       );
     } else {
       return (
-        <div key={i}>
+        <div key={i} className="">
           <h2>No recipe found</h2>
           <p onClick={() => setMatchingRecipes([])}>Try searching by tags</p>
         </div>
@@ -166,7 +172,7 @@ const Search = () => {
           ) : (
             <div>
               <div className="padbot2 display-flex justify-center">
-                <button onClick={returnToTags} className="btn-dark rounded">
+                <button onClick={returnToTags} className="btn-orange rounded">
                   Try tags again
                 </button>
               </div>
