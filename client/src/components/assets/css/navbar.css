@@ -1,5 +1,5 @@
 .container-fullwidth.container-navbar {
-  height: 55px;
+  height: 65px;
   padding: 0;
 }
 
@@ -8,20 +8,22 @@
   width: 100%;
 }
 
-.container-navbar button {
+/* .container-navbar button {
   height: 100%;
-}
+} */
 
-.dropdown {
+/* .dropdown {
   height: 100%;
-}
+} */
 
 .dropdown-content {
   display: none;
   position: absolute;
   right: 0;
+  bottom: 0;
   z-index: 1;
-  height: calc(100vh - 55px);
+  height: calc(100vh - 65px);
+  width: 25%;
 }
 
 .show {

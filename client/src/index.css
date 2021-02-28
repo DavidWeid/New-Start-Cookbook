@@ -149,4 +149,9 @@ button:focus {
 input {
   border: 1px solid var(--main-muted-dark-color);
   padding: 0.35rem 0.6rem;
+  outline: none;
+}
+
+input[type="text"]:focus {
+  border: 1px solid rgba(0, 0, 0, 0.25);
 }

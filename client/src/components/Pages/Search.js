@@ -1,6 +1,7 @@
 import React, { Fragment, useState, useEffect } from "react";
 import API from "../../utils/API";
 import { Link } from "react-router-dom";
+// import RecipeCard from "../RecipeCard";
 import "../assets/css/pages.css";
 
 const Search = () => {
@@ -56,30 +57,56 @@ const Search = () => {
     }
   };
 
-  const initialRecipeTags = recipeTags.map((tag) => {
+  const initialRecipeTags = recipeTags.map((tag, idx) => {
     return (
-      <p key={tag} onClick={() => fetchRecipesByTag(tag)}>
-        {tag}
+      <p key={idx} className="padrighthalf">
+        <button
+          className="box-tag"
+          key={tag}
+          onClick={() => fetchRecipesByTag(tag)}
+        >
+          {tag}
+        </button>
       </p>
     );
   });
 
   const resultsFromSearch = matchingRecipes.map((recipe, i) => {
     if (recipe._id) {
-      return (
-        <div key={recipe._id}>
-          <h2>{recipe.title}</h2>
-          <h3>{recipe.description}</h3>
-          <p>
-            Created by {recipe.creator}
-            {recipe.creator === recipe.owner ? (
-              <span></span>
-            ) : (
-              <span>, owned by {recipe.owner}</span>
-            )}
+      const createRecipeTags = recipe.tags.map((tag, idx) => {
+        return (
+          <p key={idx} className="padrighthalf">
+            <button className="box-tag paddinghalf text-small" key={tag}>
+              {tag}
+            </button>
           </p>
-          <p>Tags: {recipe.tags.join(", ")}</p>
-          <Link to={`/recipe/${recipe._id}`}>View</Link>
+        );
+      });
+
+      return (
+        <div key={recipe._id} className="padbot2 search-result-card-container">
+          <div className="padding1 rounded  card-shadow">
+            <h2 className="text-dark-green">{recipe.title}</h2>
+            <h3>{recipe.description}</h3>
+            <p className="text-small padbothalf">
+              Created by {recipe.creator}
+              {recipe.creator === recipe.owner ? (
+                <span></span>
+              ) : (
+                <span>, owned by {recipe.owner}</span>
+              )}
+            </p>
+            {/* <p>Tags: {recipe.tags.join(", ")}</p> */}
+            <div className="display-flex">{createRecipeTags}</div>
+            <p>
+              <Link
+                className="dark-green padbothalf"
+                to={`/recipe/${recipe._id}`}
+              >
+                View
+              </Link>
+            </p>
+          </div>
         </div>
       );
     } else {
@@ -135,13 +162,17 @@ const Search = () => {
       <div className="container-fullwidth padtop2">
         <div className="container">
           {matchingRecipes.length === 0 ? (
-            <div>View receipes by tags: {initialRecipeTags}</div>
+            <div className="display-flex flex-wrap">{initialRecipeTags}</div>
           ) : (
             <div>
-              <button onClick={returnToTags} className="btn-dark rounded">
-                Try tags again
-              </button>
-              {resultsFromSearch}
+              <div className="padbot2 display-flex justify-center">
+                <button onClick={returnToTags} className="btn-dark rounded">
+                  Try tags again
+                </button>
+              </div>
+              <div className="padtop2 display-flex flex-wrap justify-space-between">
+                {resultsFromSearch}
+              </div>
             </div>
           )}
         </div>

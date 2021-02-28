@@ -3,6 +3,25 @@
   width: 75%;
 }
 
+/* Search Page */
+button.box-tag {
+  border-radius: 0;
+  color: var(--main-accent-dark-green-color);
+  border: 1px solid var(--main-muted-dark-color);
+  border-right: 6px solid var(--main-accent-orange-color);
+  letter-spacing: 0.2px;
+}
+
+button.box-tag:hover {
+  color: var(--main-muted-dark-color);
+  background-color: var(--main-accent-orange-color);
+  border-color: var(--main-accent-orange-color);
+}
+
+.search-result-card-container {
+  width: 48%;
+}
+
 /* Recipe Page */
 .marked {
   color: var(--main-accent-red-color);

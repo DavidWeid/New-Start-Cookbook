@@ -25,7 +25,7 @@ const NavBar = () => {
 
         <div className="dropdown">
           <button
-            className="btn-drop btn-orange"
+            className="btn-drop btn-orange rounded"
             onClick={() => dropdownMenu()}
           >
             Profile
@@ -33,9 +33,9 @@ const NavBar = () => {
           <div id="profile-dropdown" className="dropdown-content bg-muted-dark">
             <OutsideAlerter>
               {!isAuthenticated && (
-                <div className="display-flex">
+                <div className="display-flex justify-center padtop2">
                   <button
-                    className="btn-dark padtop1 padbot1"
+                    className="btn-dark"
                     onClick={() => loginWithRedirect({})}
                   >
                     Log in
@@ -44,29 +44,37 @@ const NavBar = () => {
               )}
 
               {isAuthenticated && (
-                <div className="display-flex">
-                  <button
-                    className="btn-dark padtop1 padbot1"
-                    onClick={() => logout()}
-                  >
+                <div className="display-flex justify-center padtop2">
+                  <button className="btn-dark" onClick={() => logout()}>
                     Log out
                   </button>
                 </div>
               )}
               {isAuthenticated && (
-                <div className="display-flex display-flex flex-direction-column align-center">
-                  <Link to="/" className="light-orange padtop1 padbot1">
-                    Home
-                  </Link>
-                  <Link to="/profile" className="light-orange padtop1 padbot1">
-                    Profile
-                  </Link>
-                  <Link to="/create" className="light-orange padtop1 padbot1">
-                    Create
-                  </Link>
-                  <Link to="/search" className="light-orange padtop1 padbot1">
-                    Search
-                  </Link>
+                <div className="display-flex flex-direction-column align-center justify-center padtop1">
+                  <p className="padtop1">
+                    <Link to="/" className="light-orange padding1">
+                      Home
+                    </Link>
+                  </p>
+                  <p className="padtop1">
+                    <Link
+                      to="/profile"
+                      className="light-orange padding1"
+                    >
+                      Profile
+                    </Link>
+                  </p>
+                  <p className="padtop1">
+                    <Link to="/create" className="light-orange padding1">
+                      Create
+                    </Link>
+                  </p>
+                  <p className="padtop1">
+                    <Link to="/search" className="light-orange padding1">
+                      Search
+                    </Link>
+                  </p>
                 </div>
               )}
             </OutsideAlerter>
