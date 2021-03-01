@@ -83,7 +83,7 @@ const Recipe = () => {
   console.log(markedInstructions);
 
   return (
-    <div>
+    <Fragment>
       <h1>Recipe Page</h1>
       {/* RecipeOptionsNav handles the recipe navigation (save, edit, delete) */}
       <RecipeOptionsNav
@@ -143,7 +143,7 @@ const Recipe = () => {
         </div>
       </div>
       {/* Recipe Div End (above) */}
-    </div>
+    </Fragment>
   );
 };
 

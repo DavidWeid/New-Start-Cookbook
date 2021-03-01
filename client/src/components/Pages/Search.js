@@ -88,7 +88,7 @@ const Search = () => {
 
       return (
         <div key={recipe._id} className="padbot2 search-result-card-container">
-          <div className="padding1 rounded  card-shadow">
+          <div className="padding1 rounded card card-shadow display-flex flex-direction-column justify-space-between">
             <h2 className="text-dark-green">{recipe.title}</h2>
             <h3>{recipe.description}</h3>
             <p className="text-small padbothalf">

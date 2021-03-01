@@ -36,7 +36,8 @@ router.get("/tags", async (req, res) => {
 
     const uniqueTags = [...new Set(allTags)];
 
-    res.status(200).json(uniqueTags);
+    // send back array of unique tags in alphabetical order
+    res.status(200).json(uniqueTags.sort());
   } catch (err) {
     res.status(400).json({
       message: "Error on route",

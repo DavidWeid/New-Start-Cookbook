@@ -3,6 +3,15 @@
   width: 75%;
 }
 
+/* Recipe Page */
+.marked {
+  color: var(--main-accent-red-color);
+}
+
+.unmarked {
+  color: var(--main-muted-dark-color);
+}
+
 /* Search Page */
 button.box-tag {
   border-radius: 0;
@@ -30,6 +39,10 @@ button.box-tag.no-hover {
   width: 100%;
 }
 
+.search-result-card-container .card {
+  height: 100%;
+}
+
 @media screen and (min-width: 501px) {
   .search-result-card-container {
     width: 48%;
@@ -38,13 +51,4 @@ button.box-tag.no-hover {
 
 .search-result-card-footer {
   border-top: 1px solid var(--main-accent-dark-green-color);
-}
-
-/* Recipe Page */
-.marked {
-  color: var(--main-accent-red-color);
-}
-
-.unmarked {
-  color: var(--main-muted-dark-color);
 }
