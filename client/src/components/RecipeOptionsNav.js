@@ -61,32 +61,48 @@ const RecipeOptionsNav = (props) => {
   // Display the recipe's navigation bar that changes based on user vs !user and if user, owner vs !owner
   return (
     <Fragment>
-      {/* If user clicks on "Delete" button, show a confirmation box via setting deleteConfirmation to "yes". This is essentially a modal */}
-      {deleteConfirmation === "no" ? (
-        <Fragment></Fragment>
-      ) : (
-        <ConfirmationBox yes={deleteRecipe} no={negateDelete} />
-      )}
-
       {isAuthenticated && user ? (
-        <Fragment>
-          {user.email === recipe.owner ? (
-            <div>
-              <input type="button" value="Edit" onClick={editRecipe} />
-              <input type="button" value="Delete" onClick={confirmDelete} />
-            </div>
-          ) : (
-            <div>
-              <input type="button" value="Save" onClick={saveAsNewRecipe} />
-            </div>
-          )}
-        </Fragment>
-      ) : (
-        <Fragment>
-          <div>
-            <p>Please login to save this recipe.</p>
+        <div className="container-fullwidth--muted-dark">
+          <div className="container display-flex justify-center">
+            {user.email === recipe.owner ? (
+              <Fragment>
+                <button className="btn-orange rounded" onClick={editRecipe}>
+                  Edit
+                </button>
+                <div className="padsideshalf"></div>
+                <button
+                  className="btn-muted-light rounded"
+                  onClick={confirmDelete}
+                >
+                  Delete
+                </button>
+              </Fragment>
+            ) : (
+              <Fragment>
+                <button
+                  className="btn-orange rounded"
+                  onClick={saveAsNewRecipe}
+                >
+                  Save Recipe
+                </button>
+              </Fragment>
+            )}
+            {/* If user clicks on "Delete" button, show a confirmation box via setting deleteConfirmation to "yes". This is essentially a modal */}
+            {deleteConfirmation === "no" ? (
+              <Fragment></Fragment>
+            ) : (
+              <ConfirmationBox yes={deleteRecipe} no={negateDelete} />
+            )}
           </div>
-        </Fragment>
+        </div>
+      ) : (
+        <div className="container-fullwidth--muted-dark">
+          <div className="container">
+            <p className="text-align-center margin0">
+              Please login to save this recipe.
+            </p>
+          </div>
+        </div>
       )}
     </Fragment>
   );

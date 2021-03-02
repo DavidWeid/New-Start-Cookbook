@@ -11,8 +11,6 @@ const Recipe = () => {
 
   const { isAuthenticated, user } = useAuth0();
 
-  console.log(user);
-
   const [recipe, setRecipe] = useState({
     _id: "",
     creator: "",
@@ -32,13 +30,11 @@ const Recipe = () => {
 
     if (targetIngredient.marked === true) {
       targetIngredient.marked = false;
-      console.log("target marked false");
     } else if (
       targetIngredient.marked === false ||
       targetIngredient.marked === undefined
     ) {
       targetIngredient.marked = true;
-      console.log("target marked true");
     }
 
     setRecipe(updatedRecipe);
@@ -50,10 +46,8 @@ const Recipe = () => {
 
     if (updatedMarkedInstructions[targetInstructionIdx] === true) {
       updatedMarkedInstructions[targetInstructionIdx] = false;
-      console.log("target marked false");
     } else if (updatedMarkedInstructions[targetInstructionIdx] === false) {
       updatedMarkedInstructions[targetInstructionIdx] = true;
-      console.log("target marked true");
     }
 
     setMarkedInstructions(updatedMarkedInstructions);
@@ -79,25 +73,42 @@ const Recipe = () => {
     fetchRecipeById(recipeId);
   }, [recipeId]);
 
-  console.log(recipe);
-  console.log(markedInstructions);
+  const createRecipeTags = recipe.tags.map((tag, idx) => {
+    return (
+      <p key={idx} className="padrighthalf marginbothalf">
+        <button className="box-tag no-hover paddinghalf text-small" key={tag}>
+          {tag}
+        </button>
+      </p>
+    );
+  });
 
   return (
     <Fragment>
-      <h1>Recipe Page</h1>
+      <div className="container-fullwidth--muted-light padbot2">
+        <div className="container">
+          <div className="padding1">
+            <h1>{recipe.title}</h1>
+            <p>{recipe.description}</p>
+            <p className="text-small">{recipe.owner}</p>
+          </div>
+        </div>
+        <div className="container">
+          <div className="padding1 display-flex flex-wrap">
+            {createRecipeTags}
+          </div>
+        </div>
+      </div>
+
       {/* RecipeOptionsNav handles the recipe navigation (save, edit, delete) */}
       <RecipeOptionsNav
         isAuthenticated={isAuthenticated}
         user={user}
         recipe={recipe}
       ></RecipeOptionsNav>
-      {/* Recipe Div (below) */}
-      <div>
-        <p>
-          {recipe.title} by {recipe.owner}
-        </p>
-        <p>{recipe.description}</p>
-        <div>
+
+      <div className="container-fullwidth">
+        <div className="container">
           <h2>Ingredients</h2>
           <Fragment>
             {recipe.ingredients.map((ingredient, idx) => {
@@ -115,7 +126,8 @@ const Recipe = () => {
             })}
           </Fragment>
         </div>
-        <div>
+
+        <div className="container">
           <h2>Instructions</h2>
           <Fragment>
             {recipe.instructionSteps.map((instructionStep, idx) => {
@@ -133,16 +145,7 @@ const Recipe = () => {
             })}
           </Fragment>
         </div>
-        <div>
-          <h3>Tags</h3>
-          <div>
-            {recipe.tags.map((tag, idx) => {
-              return <span key={idx}>{tag} </span>;
-            })}
-          </div>
-        </div>
       </div>
-      {/* Recipe Div End (above) */}
     </Fragment>
   );
 };
