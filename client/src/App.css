@@ -53,6 +53,9 @@
 /*  
 ----- Display / Flexbox properties -----
 */
+.on-top {
+  z-index: 1;
+}
 
 .display-none {
   display: none;
@@ -201,7 +204,7 @@
 }
 
 .blur {
-  height: calc(100% - 55px);
+  height: calc(100% - 65px);
   width: 100%;
   background-color: rgba(0, 0, 0, 0.25);
   position: absolute;

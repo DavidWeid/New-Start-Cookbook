@@ -98,7 +98,7 @@ const RecipeOptionsNav = (props) => {
       ) : (
         <div className="container-fullwidth--muted-dark">
           <div className="container">
-            <p className="text-align-center margin0">
+            <p className="text-align-center text-small margin0">
               Please login to save this recipe.
             </p>
           </div>

@@ -113,15 +113,14 @@ const Recipe = () => {
           <Fragment>
             {recipe.ingredients.map((ingredient, idx) => {
               return (
-                <div key={ingredient.ingredient}>
-                  <p
-                    onClick={toggleMarkIngredient}
-                    data-idx={idx}
-                    className={ingredient.marked ? "marked" : "unmarked"}
-                  >
-                    {ingredient.amount} {ingredient.ingredient}
-                  </p>
-                </div>
+                <label
+                  key={ingredient.ingredient}
+                  className="container-checkbox"
+                >
+                  {ingredient.amount} {ingredient.ingredient}
+                  <input type="checkbox"></input>
+                  <span className="checkmark"></span>
+                </label>
               );
             })}
           </Fragment>
