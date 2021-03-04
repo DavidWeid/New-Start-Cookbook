@@ -1,6 +1,12 @@
 /* Home Page */
 .homepage-logo {
-  width: 75%;
+  width: 85%;
+}
+
+@media screen and (min-width: 501px) {
+  .homepage-logo {
+    width: 75%;
+  }
 }
 
 /* Recipe Page */
