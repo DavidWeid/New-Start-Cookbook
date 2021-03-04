@@ -4,12 +4,10 @@
 }
 
 /* Recipe Page */
-.marked {
-  color: var(--main-accent-red-color);
-}
-
-.unmarked {
-  color: var(--main-muted-dark-color);
+.recipe-page {
+  width: 50%;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .container-checkbox {
@@ -36,6 +34,7 @@
   height: 24px;
   width: 24px;
   background-color: var(--main-muted-light-color);
+  transition: all 0.3s;
 }
 .container-checkbox:hover input ~ .checkmark {
   background-color: var(--main-muted-medium-color);

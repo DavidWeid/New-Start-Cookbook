@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import "./assets/css/confirmationBox.css";
 
 const ConfirmationBox = (props) => {

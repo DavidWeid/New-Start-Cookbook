@@ -4,6 +4,7 @@ import "../assets/css/pages.css";
 import { useParams } from "react-router-dom";
 import { useAuth0 } from "../../react-auth0-wrapper";
 import RecipeOptionsNav from "../RecipeOptionsNav";
+import { Link } from "react-router-dom";
 
 const Recipe = () => {
   const params = useParams();
@@ -22,48 +23,11 @@ const Recipe = () => {
     tags: []
   });
 
-  const [markedInstructions, setMarkedInstructions] = useState([]);
-
-  const toggleMarkIngredient = (e) => {
-    const updatedRecipe = { ...recipe };
-    const targetIngredient = updatedRecipe.ingredients[e.target.dataset.idx];
-
-    if (targetIngredient.marked === true) {
-      targetIngredient.marked = false;
-    } else if (
-      targetIngredient.marked === false ||
-      targetIngredient.marked === undefined
-    ) {
-      targetIngredient.marked = true;
-    }
-
-    setRecipe(updatedRecipe);
-  };
-
-  const toggleMarkInstruction = (e) => {
-    const updatedMarkedInstructions = [...markedInstructions];
-    const targetInstructionIdx = e.target.dataset.idx;
-
-    if (updatedMarkedInstructions[targetInstructionIdx] === true) {
-      updatedMarkedInstructions[targetInstructionIdx] = false;
-    } else if (updatedMarkedInstructions[targetInstructionIdx] === false) {
-      updatedMarkedInstructions[targetInstructionIdx] = true;
-    }
-
-    setMarkedInstructions(updatedMarkedInstructions);
-  };
-
   const fetchRecipeById = async (recipeId) => {
     try {
       const recipe = await API.grabRecipeById(recipeId);
       console.log(recipe);
       setRecipe(recipe.data);
-      const numInstructions = recipe.data.instructionSteps.length;
-      let markedFalseArr = [];
-      for (var i = 0; i < numInstructions; i++) {
-        markedFalseArr.push(false);
-      }
-      setMarkedInstructions(markedFalseArr);
     } catch (err) {
       console.log(err);
     }
@@ -107,42 +71,58 @@ const Recipe = () => {
         recipe={recipe}
       ></RecipeOptionsNav>
 
-      <div className="container-fullwidth">
-        <div className="container">
-          <h2>Ingredients</h2>
-          <Fragment>
-            {recipe.ingredients.map((ingredient, idx) => {
-              return (
-                <label
-                  key={ingredient.ingredient}
-                  className="container-checkbox"
-                >
-                  {ingredient.amount} {ingredient.ingredient}
-                  <input type="checkbox"></input>
-                  <span className="checkmark"></span>
-                </label>
-              );
-            })}
-          </Fragment>
-        </div>
-
-        <div className="container">
-          <h2>Instructions</h2>
-          <Fragment>
-            {recipe.instructionSteps.map((instructionStep, idx) => {
-              return (
-                <div key={idx}>
-                  <p
-                    onClick={toggleMarkInstruction}
-                    data-idx={idx}
-                    className={markedInstructions[idx] ? "marked" : "unmarked"}
+      <div className="container-fullwidth--secondary-dark padtop2half padbot2half">
+        <div className="recipe-page padding1 bg-muted-dark text-white more-rounded card-shadow-dark">
+          <div className="container">
+            <h2 className="text-align-center text-orange padbothalf">
+              Ingredients
+            </h2>
+            <Fragment>
+              {recipe.ingredients.map((ingredient, idx) => {
+                return (
+                  <label
+                    key={ingredient.ingredient}
+                    className="container-checkbox opacity-85"
                   >
+                    {ingredient.amount} {ingredient.ingredient}
+                    <input type="checkbox"></input>
+                    <span className="checkmark"></span>
+                  </label>
+                );
+              })}
+            </Fragment>
+          </div>
+
+          <div className="container">
+            <h2 className="text-align-center text-orange padbothalf">
+              Instructions
+            </h2>
+            <Fragment>
+              {recipe.instructionSteps.map((instructionStep, idx) => {
+                return (
+                  <label key={idx} className="container-checkbox opacity-85">
                     {idx + 1}. {instructionStep}
-                  </p>
-                </div>
-              );
-            })}
-          </Fragment>
+                    <input type="checkbox"></input>
+                    <span className="checkmark"></span>
+                  </label>
+                );
+              })}
+            </Fragment>
+          </div>
+        </div>
+      </div>
+      <div className="container-fullwidth">
+        <div className="container text-align-center padtop1 padbot1">
+          <p className="margin0">
+            <Link to="/create" className="dark-green bold padbothalf">
+              Create a recipe{" "}
+            </Link>
+            or
+            <Link to="/search" className="dark-green bold padbothalf">
+              {" "}
+              search for something new
+            </Link>
+          </p>
         </div>
       </div>
     </Fragment>
