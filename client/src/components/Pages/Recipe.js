@@ -72,7 +72,7 @@ const Recipe = () => {
       ></RecipeOptionsNav>
 
       <div className="container-fullwidth--secondary-dark padtop2half padbot2half">
-        <div className="recipe-page padding1 bg-muted-dark text-white more-rounded card-shadow-dark">
+        <div className="recipe-page paddinghalf bg-muted-dark text-white more-rounded card-shadow-dark">
           <div className="container">
             <h2 className="text-align-center text-orange padbothalf">
               Ingredients
@@ -101,9 +101,11 @@ const Recipe = () => {
               {recipe.instructionSteps.map((instructionStep, idx) => {
                 return (
                   <label key={idx} className="container-checkbox opacity-85">
-                    {idx + 1}. {instructionStep}
+                    {instructionStep}
                     <input type="checkbox"></input>
-                    <span className="checkmark"></span>
+                    <span className="checkmark">
+                      <span>&nbsp;{idx + 1}</span>
+                    </span>
                   </label>
                 );
               })}

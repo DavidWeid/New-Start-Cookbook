@@ -9,6 +9,12 @@
   }
 }
 
+/* Create Page*/
+.container-create-form form {
+  display: flex;
+  flex-direction: column;
+}
+
 /* Recipe Page */
 .recipe-page {
   width: 96%;
@@ -72,6 +78,12 @@
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
+}
+.container-checkbox .checkmark > span {
+  color: var(--main-muted-dark-color);
+}
+.container-checkbox input:checked ~ .checkmark > span {
+  opacity: 0;
 }
 
 /* Search Page */

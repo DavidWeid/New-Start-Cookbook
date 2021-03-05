@@ -80,7 +80,7 @@ const Home = () => {
               <p>
                 {recipes.length === 0
                   ? "No recipes found! Let's change that..."
-                  : `You have ${recipes.length} recipes!`}
+                  : `You have ${recipes.length} recipes`}
               </p>
             </div>
           </div>

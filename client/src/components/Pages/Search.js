@@ -144,7 +144,6 @@ const Search = () => {
                   <span style={{ display: "none" }}>Find recipes by tag</span>
                 </label>
                 <input
-                  className="rounded"
                   type="text"
                   value={inputValue}
                   onChange={recipeFilterOnChange}

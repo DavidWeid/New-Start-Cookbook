@@ -2,7 +2,7 @@ import React, { Fragment, useState } from "react";
 import { useAuth0 } from "../react-auth0-wrapper";
 import API from "../utils/API";
 import { useForm } from "react-hook-form";
-import "./assets/css/createRecipeForm.css"
+import "./assets/css/createRecipeForm.css";
 
 const CreateRecipeForm = () => {
   /*** Require User and Form ***/
@@ -223,12 +223,13 @@ const CreateRecipeForm = () => {
                   onChange={handleIngredientChange}
                   ref={register()}
                 />
-                <input
-                  type="button"
-                  value="Remove"
+                <button
+                  className="btn-muted-light rounded text-small"
                   onClick={removeIngredient}
                   data-idx={idx}
-                />
+                >
+                  Remove Ingredient
+                </button>
               </div>
             );
           })}

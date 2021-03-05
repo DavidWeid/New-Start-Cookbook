@@ -1,6 +1,15 @@
 /*  
 ----- Container properties -----
 */
+.container-fullheight {
+  min-height: calc(100vh - 65px);
+}
+
+.container-fullheight--secondary-dark {
+  min-height: calc(100vh - 65px);
+  background-color: var(--secondary-dark-color);
+}
+
 .container-fullwidth {
   width: 100%;
   padding: 1.25rem 0;
@@ -266,6 +275,16 @@
 .btn-orange:hover {
   color: var(--white);
   background-color: var(--main-accent-dark-orange-color);
+}
+
+.btn-green {
+  color: var(--main-muted-dark-color);
+  background-color: var(--main-accent-green-color);
+}
+
+.btn-green:hover {
+  color: var(--white);
+  background-color: var(--main-accent-dark-green-color);
 }
 
 .btn-dark {
