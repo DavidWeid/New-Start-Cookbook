@@ -13,7 +13,12 @@
 .container-create-form form {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
+
+/* .container-create-form input[type="text"] {
+  width: 100%;
+} */
 
 /* Recipe Page */
 .recipe-page {

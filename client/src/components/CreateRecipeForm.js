@@ -177,114 +177,130 @@ const CreateRecipeForm = () => {
       {!isAuthenticated && <div>Please log in to create a recipe.</div>}
       {isAuthenticated && user && (
         <form onSubmit={handleSubmit(onSubmit)}>
-          <input
-            type="text"
-            name="title"
-            placeholder="Title"
-            id="title"
-            value={recipe.title}
-            onChange={handleRecipeChange}
-            ref={register({ required: true })}
-          />
-          <input
-            type="text"
-            name="description"
-            placeholder="Description"
-            id="description"
-            value={recipe.description}
-            onChange={handleRecipeChange}
-            ref={register({ required: true })}
-          />
-
-          {ingredients.map((val, idx) => {
-            const ingredientId = `ingredients[${idx}].ingredient`;
-            const amountId = `ingredients[${idx}].amount`;
-            return (
-              <div key={`ingredient-${idx}`}>
-                <input
-                  type="text"
-                  name={ingredientId}
-                  data-idx={idx}
-                  placeholder="Ingredient"
-                  id={ingredientId}
-                  className="ingredient"
-                  value={ingredients[idx].ingredient}
-                  onChange={handleIngredientChange}
-                  ref={register()}
-                />
-                <input
-                  type="text"
-                  name={amountId}
-                  data-idx={idx}
-                  placeholder="Amount"
-                  id={amountId}
-                  className="amount"
-                  value={ingredients[idx].amount}
-                  onChange={handleIngredientChange}
-                  ref={register()}
-                />
-                <button
-                  className="btn-muted-light rounded text-small"
-                  onClick={removeIngredient}
-                  data-idx={idx}
-                >
-                  Remove Ingredient
-                </button>
-              </div>
-            );
-          })}
-
-          <input type="button" value="Add Ingredient" onClick={addIngredient} />
-
-          {instructionSteps.map((val, idx) => {
-            const instructionId = `instructionSteps[${idx}]`;
-            return (
-              <div key={`instruction-${idx}`}>
-                <span>{idx + 1}</span>
-                <input
-                  type="text"
-                  name={instructionId}
-                  data-idx={idx}
-                  placeholder="Instruction Step"
-                  id={instructionId}
-                  className="instructionStep"
-                  value={instructionSteps[idx]}
-                  onChange={handleInstructionStepChange}
-                  ref={register()}
-                />
-                <input
-                  type="button"
-                  value="Remove"
-                  onClick={removeInstruction}
-                  data-idx={idx}
-                />
-              </div>
-            );
-          })}
-
-          <input
-            type="button"
-            value="Add Instruction Step"
-            onClick={addInstructionStep}
-          />
-
-          <div>
-            {recipeTags.map((tag, idx) => {
-              return (
-                <p key={idx} data-idx={idx} onClick={removeTag}>
-                  {tag}
-                </p>
-              );
-            })}
+          <div className="container padbot2">
+            <input
+              type="text"
+              name="title"
+              placeholder="Title"
+              id="title"
+              value={recipe.title}
+              onChange={handleRecipeChange}
+              ref={register({ required: true })}
+            />
+            <input
+              type="text"
+              name="description"
+              placeholder="Description"
+              id="description"
+              value={recipe.description}
+              onChange={handleRecipeChange}
+              ref={register({ required: true })}
+            />
           </div>
 
-          <input
-            onKeyUp={(e) => onKeyUp(e)}
-            type="text"
-            placeholder="Add comma-separated recipe tags."
-          />
+          <h2 className="text-orange">Ingredients</h2>
 
-          <input type="submit" value="Submit" />
+          <div className="container padbot2">
+            {ingredients.map((val, idx) => {
+              const ingredientId = `ingredients[${idx}].ingredient`;
+              const amountId = `ingredients[${idx}].amount`;
+              return (
+                <div key={`ingredient-${idx}`}>
+                  <input
+                    type="text"
+                    name={ingredientId}
+                    data-idx={idx}
+                    placeholder="Ingredient"
+                    id={ingredientId}
+                    className="ingredient"
+                    value={ingredients[idx].ingredient}
+                    onChange={handleIngredientChange}
+                    ref={register()}
+                  />
+                  <input
+                    type="text"
+                    name={amountId}
+                    data-idx={idx}
+                    placeholder="Amount"
+                    id={amountId}
+                    className="amount"
+                    value={ingredients[idx].amount}
+                    onChange={handleIngredientChange}
+                    ref={register()}
+                  />
+                  <button
+                    className="btn-muted-light rounded text-small"
+                    onClick={removeIngredient}
+                    data-idx={idx}
+                  >
+                    Remove Ingredient
+                  </button>
+                </div>
+              );
+            })}
+
+            <button className="btn-orange rounded" onClick={addIngredient}>
+              Add Ingredient
+            </button>
+          </div>
+
+          <h2 className="text-orange">Instructions</h2>
+
+          <div className="container padbot2">
+            {instructionSteps.map((val, idx) => {
+              const instructionId = `instructionSteps[${idx}]`;
+              return (
+                <div key={`instruction-${idx}`}>
+                  <span>{idx + 1}</span>
+                  <input
+                    type="text"
+                    name={instructionId}
+                    data-idx={idx}
+                    placeholder="Instruction Step"
+                    id={instructionId}
+                    className="instructionStep"
+                    value={instructionSteps[idx]}
+                    onChange={handleInstructionStepChange}
+                    ref={register()}
+                  />
+
+                  <button
+                    className="btn-muted-light rounded text-small"
+                    onClick={removeInstruction}
+                    data-idx={idx}
+                  >
+                    Remove Instruction
+                  </button>
+                </div>
+              );
+            })}
+
+            <button className="btn-orange rounded" onClick={addInstructionStep}>
+              Add Instruction
+            </button>
+          </div>
+
+          <div className="container padbot2">
+            <input
+              onKeyUp={(e) => onKeyUp(e)}
+              type="text"
+              placeholder="Add comma-separated recipe tags."
+            />
+
+            <div className="padtop1 display-flex flex-wrap">
+              {recipeTags.map((tag, idx) => {
+                return (
+                  <p key={idx} data-idx={idx} onClick={removeTag}>
+                    {tag}
+                  </p>
+                );
+              })}
+            </div>
+          </div>
+
+          <button className="btn-orange rounded" type="submit" value="Submit">
+            Submit
+          </button>
         </form>
       )}
     </Fragment>

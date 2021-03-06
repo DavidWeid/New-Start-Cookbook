@@ -32,6 +32,15 @@ const NavBar = () => {
           </button>
           <div id="profile-dropdown" className="dropdown-content bg-muted-dark">
             <OutsideAlerter>
+              <div className="padtop2"></div>
+              <div className="display-flex justify-center padtop2">
+                <button
+                  className="btn-drop btn-orange rounded text-small"
+                  onClick={() => dropdownMenu()}
+                >
+                  Close
+                </button>
+              </div>
               {!isAuthenticated && (
                 <div className="display-flex justify-center padtop2">
                   <button
@@ -58,10 +67,7 @@ const NavBar = () => {
                     </Link>
                   </p>
                   <p className="padtop1">
-                    <Link
-                      to="/profile"
-                      className="light-orange padding1"
-                    >
+                    <Link to="/profile" className="light-orange padding1">
                       Profile
                     </Link>
                   </p>
