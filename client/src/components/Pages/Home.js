@@ -39,34 +39,41 @@ const Home = () => {
       {/* If user isn't authenticated, need to login to save & create */}
       {!isAuthenticated && (
         <div className="container-fullwidth padtop1">
-          <div className="container text-align-center ">
-            <div className="display-flex justify-center padbot1">
-              <img
-                className="homepage-logo"
-                src={logo}
-                alt="New Start Cook Book - A Genius Cook with a Good Book"
-                width="1333"
-                height="1000"
-                loading="eager"
-              />
+          <div className="container">
+            <div className="display-flex justify-space-between padbot1">
+              <div className="display-flex flex-direction-column justify-center align-start">
+                <h1 className="homepage-header">New Start Cookbook</h1>
+                <p className="padbothalf">
+                  Browse, save, and create your next culinary masterpiece.
+                </p>
+
+                <div className="display-flex align-center">
+                  <button
+                    className="btn-dark-green rounded"
+                    onClick={() => loginWithRedirect({})}
+                  >
+                    Log In
+                  </button>
+
+                  <p className="text-small padleft1 margin0">
+                    <Link to="/search" className="btn-link dark-orange bold">
+                      Browse Recipes
+                    </Link>
+                  </p>
+                </div>
+              </div>
+              <div>
+                <div className="hidden-large padtop1"></div>
+                <img
+                  className="homepage-logo"
+                  src={logo}
+                  alt="New Start Cook Book - A Genius Cook with a Good Book"
+                  width="1333"
+                  height="1000"
+                  loading="eager"
+                />
+              </div>
             </div>
-            <h1>
-              Please{" "}
-              <Link
-                to={""}
-                className="dark-green btn-link"
-                onClick={() => loginWithRedirect({})}
-              >
-                log in
-              </Link>{" "}
-              to save and create recipes!
-            </h1>
-            Or you can
-            <Link to="/search" className="dark-green bold padbothalf">
-              {" "}
-              start browsing recipes{" "}
-            </Link>{" "}
-            right away
           </div>
         </div>
       )}

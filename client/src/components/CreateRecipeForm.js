@@ -178,45 +178,46 @@ const CreateRecipeForm = () => {
       {isAuthenticated && user && (
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="container padbot2">
-            <input
-              type="text"
-              name="title"
-              placeholder="Title"
-              id="title"
-              value={recipe.title}
-              onChange={handleRecipeChange}
-              ref={register({ required: true })}
-            />
-            <input
-              type="text"
-              name="description"
-              placeholder="Description"
-              id="description"
-              value={recipe.description}
-              onChange={handleRecipeChange}
-              ref={register({ required: true })}
-            />
+            <fieldset>
+              <label className="text-small" for="title">
+                Title
+              </label>
+              <input
+                className="fullwidth margintophalf"
+                type="text"
+                name="title"
+                placeholder="Title"
+                id="title"
+                value={recipe.title}
+                onChange={handleRecipeChange}
+                ref={register({ required: true })}
+              />
+            </fieldset>
+
+            <fieldset>
+              <label className="text-small" for="description">
+                Description
+              </label>
+              <input
+                className="fullwidth margintophalf"
+                type="text"
+                name="description"
+                placeholder="Description"
+                id="description"
+                value={recipe.description}
+                onChange={handleRecipeChange}
+                ref={register({ required: true })}
+              />
+            </fieldset>
           </div>
 
-          <h2 className="text-orange">Ingredients</h2>
-
           <div className="container padbot2">
+            <h2 className="text-orange">Ingredients</h2>
             {ingredients.map((val, idx) => {
               const ingredientId = `ingredients[${idx}].ingredient`;
               const amountId = `ingredients[${idx}].amount`;
               return (
-                <div key={`ingredient-${idx}`}>
-                  <input
-                    type="text"
-                    name={ingredientId}
-                    data-idx={idx}
-                    placeholder="Ingredient"
-                    id={ingredientId}
-                    className="ingredient"
-                    value={ingredients[idx].ingredient}
-                    onChange={handleIngredientChange}
-                    ref={register()}
-                  />
+                <div className="flex-container-input-btn" key={`ingredient-${idx}`}>
                   <input
                     type="text"
                     name={amountId}
@@ -228,12 +229,25 @@ const CreateRecipeForm = () => {
                     onChange={handleIngredientChange}
                     ref={register()}
                   />
+
+                  <input
+                    type="text"
+                    name={ingredientId}
+                    data-idx={idx}
+                    placeholder="Ingredient"
+                    id={ingredientId}
+                    className="ingredient"
+                    value={ingredients[idx].ingredient}
+                    onChange={handleIngredientChange}
+                    ref={register()}
+                  />
+                  
                   <button
-                    className="btn-muted-light rounded text-small"
+                    className="btn-muted-light rounded text-smaller"
                     onClick={removeIngredient}
                     data-idx={idx}
                   >
-                    Remove Ingredient
+                    Remove
                   </button>
                 </div>
               );
@@ -244,9 +258,8 @@ const CreateRecipeForm = () => {
             </button>
           </div>
 
-          <h2 className="text-orange">Instructions</h2>
-
           <div className="container padbot2">
+            <h2 className="text-orange">Instructions</h2>
             {instructionSteps.map((val, idx) => {
               const instructionId = `instructionSteps[${idx}]`;
               return (
@@ -265,7 +278,7 @@ const CreateRecipeForm = () => {
                   />
 
                   <button
-                    className="btn-muted-light rounded text-small"
+                    className="btn-muted-light rounded text-smaller"
                     onClick={removeInstruction}
                     data-idx={idx}
                   >

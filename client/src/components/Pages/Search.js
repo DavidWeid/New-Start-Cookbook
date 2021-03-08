@@ -77,7 +77,7 @@ const Search = () => {
         return (
           <p key={idx} className="padrighthalf marginbothalf">
             <button
-              className="box-tag no-hover paddinghalf text-small"
+              className="box-tag no-hover paddinghalf text-smaller"
               key={tag}
             >
               {tag}
@@ -91,7 +91,7 @@ const Search = () => {
           <div className="padding1 rounded card card-shadow display-flex flex-direction-column justify-space-between">
             <h2 className="text-dark-green">{recipe.title}</h2>
             <h3>{recipe.description}</h3>
-            <p className="text-small padbothalf">
+            <p className="text-smaller padbothalf">
               Created by {recipe.creator}
               {recipe.creator === recipe.owner ? (
                 <span></span>

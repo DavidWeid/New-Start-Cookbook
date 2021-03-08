@@ -20,7 +20,7 @@ const NavBar = () => {
         <Timers />
 
         <Link to="/" className="light-orange text-align-center btn-link">
-          New Start Cook Book
+          New Start Cookbook
         </Link>
 
         <div className="dropdown">
@@ -35,7 +35,7 @@ const NavBar = () => {
               <div className="padtop2"></div>
               <div className="display-flex justify-center padtop2">
                 <button
-                  className="btn-drop btn-orange rounded text-small"
+                  className="btn-drop btn-orange rounded text-smaller"
                   onClick={() => dropdownMenu()}
                 >
                   Close

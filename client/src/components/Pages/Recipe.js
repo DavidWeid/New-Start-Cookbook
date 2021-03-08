@@ -40,7 +40,7 @@ const Recipe = () => {
   const createRecipeTags = recipe.tags.map((tag, idx) => {
     return (
       <p key={idx} className="padrighthalf marginbothalf">
-        <button className="box-tag no-hover paddinghalf text-small" key={tag}>
+        <button className="box-tag no-hover paddinghalf text-smaller" key={tag}>
           {tag}
         </button>
       </p>
@@ -54,7 +54,7 @@ const Recipe = () => {
           <div className="padding1">
             <h1>{recipe.title}</h1>
             <p>{recipe.description}</p>
-            <p className="text-small">{recipe.owner}</p>
+            <p className="text-smaller">{recipe.owner}</p>
           </div>
         </div>
         <div className="container">
@@ -100,7 +100,10 @@ const Recipe = () => {
             <Fragment>
               {recipe.instructionSteps.map((instructionStep, idx) => {
                 return (
-                  <label key={idx} className="container-checkbox opacity-85">
+                  <label
+                    key={idx}
+                    className="container-checkbox opacity-85 padbothalf"
+                  >
                     {instructionStep}
                     <input type="checkbox"></input>
                     <span className="checkmark">

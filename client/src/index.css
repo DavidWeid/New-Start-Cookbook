@@ -24,7 +24,7 @@ html {
   font-size: calc(0.95em + 0.75vw);
   /* minimum font-size is 16px (1rem) and maximum font size is 22px */
   font-size: min(max(1rem, 4vw), 22px);
-  line-height: 1.15;
+  line-height: 1.25;
   background-color: var(--white);
   color: var(--main-muted-dark-color);
   /* user-select: none; */
@@ -53,8 +53,14 @@ select,
 textarea {
   font-family: inherit;
   font-size: inherit;
-  line-height: 1.15;
+  line-height: 1.25;
   margin: 0;
+}
+
+fieldset {
+  margin: 0;
+  border: none;
+  padding: none;
 }
 
 img,
@@ -87,11 +93,18 @@ p {
 
 /* link styles */
 a {
+  width: fit-content;
   transition: all 0.33s;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 2px;
 }
 
 a:hover {
   border-bottom: 1px solid;
+}
+
+a:visited {
+  color: var(--main-muted-dark-color);
 }
 
 a.btn-link {
@@ -157,4 +170,8 @@ input {
 
 input[type="text"]:focus {
   border: 1px solid rgba(0, 0, 0, 0.25);
+}
+
+input.fullwidth {
+  width: 100%;
 }
