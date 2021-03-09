@@ -6,6 +6,20 @@
 .container-navbar > .container {
   height: 100%;
   width: 100%;
+  overflow: hidden;
+  max-width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+  .container-navbar > .container {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  .container-navbar > .container a.btn-link.logo-link,
+  .container-navbar > .container a.btn-link.logo-link img.logo-navbar {
+    height: 100%;
+    width: auto;
+  }
 }
 
 /* .container-navbar button {
@@ -15,6 +29,10 @@
 /* .dropdown {
   height: 100%;
 } */
+
+.logo-navbar {
+  width: auto;
+}
 
 .dropdown-content {
   display: none;
