@@ -243,8 +243,8 @@ const Timers = () => {
 
   return (
     <Fragment>
-      <button className="btn-orange rounded" onClick={() => toggleTimerModule()}>
-        Timers
+      <button className="btn-no-btn-light" onClick={() => toggleTimerModule()}>
+        Timer
       </button>
       <div id="timerModule" className="blur display-none">
         <div className="timer-module bg-muted-dark">

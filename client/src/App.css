@@ -354,6 +354,15 @@
   background-color: var(--main-accent-dark-red-color);
 }
 
+.btn-no-btn-light {
+  background-color: rgba(0, 0, 0, 0);
+  color: var(--main-accent-orange-color);
+}
+
+.btn-no-btn-light:hover {
+  color: var(--white);
+}
+
 /*
 ----- Misc Props -----
 */

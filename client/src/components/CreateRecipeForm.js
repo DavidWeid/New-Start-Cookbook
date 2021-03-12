@@ -217,7 +217,10 @@ const CreateRecipeForm = () => {
               const ingredientId = `ingredients[${idx}].ingredient`;
               const amountId = `ingredients[${idx}].amount`;
               return (
-                <div className="flex-container-input-btn" key={`ingredient-${idx}`}>
+                <div
+                  className="flex-container-input-btn"
+                  key={`ingredient-${idx}`}
+                >
                   <input
                     type="text"
                     name={amountId}
@@ -241,13 +244,13 @@ const CreateRecipeForm = () => {
                     onChange={handleIngredientChange}
                     ref={register()}
                   />
-                  
+
                   <button
                     className="btn-muted-light rounded text-smaller"
                     onClick={removeIngredient}
                     data-idx={idx}
                   >
-                    Remove
+                    X
                   </button>
                 </div>
               );
