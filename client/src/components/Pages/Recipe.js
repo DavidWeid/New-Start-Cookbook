@@ -40,7 +40,7 @@ const Recipe = () => {
   const createRecipeTags = recipe.tags.map((tag, idx) => {
     return (
       <p key={idx} className="padrighthalf marginbothalf">
-        <button className="box-tag no-hover paddinghalf text-smaller" key={tag}>
+        <button className="box-tag no-hover no-focus paddinghalf text-smaller" key={tag}>
           {tag}
         </button>
       </p>

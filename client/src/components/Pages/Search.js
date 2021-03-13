@@ -77,7 +77,7 @@ const Search = () => {
         return (
           <p key={idx} className="padrighthalf marginbothalf">
             <button
-              className="box-tag no-hover paddinghalf text-smaller"
+              className="box-tag no-hover no-focus paddinghalf text-smaller"
               key={tag}
             >
               {tag}

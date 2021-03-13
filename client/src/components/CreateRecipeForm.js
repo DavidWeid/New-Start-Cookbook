@@ -3,7 +3,7 @@ import { useAuth0 } from "../react-auth0-wrapper";
 import API from "../utils/API";
 import { useForm } from "react-hook-form";
 import "./assets/css/createRecipeForm.css";
-// import { Redirect } from "react-router";
+import { Redirect } from "react-router";
 
 const CreateRecipeForm = () => {
   /*** Require User and Form ***/
@@ -12,6 +12,10 @@ const CreateRecipeForm = () => {
   const { register, handleSubmit } = useForm();
 
   /*** Create and set our states ***/
+
+  // recipeId and submitted states for redirect after submit
+  const [recipeId, setRecipeId] = useState("");
+  const [submitted, setSubmitted] = useState(false);
 
   // useState for recipe (obj) - title and description
   const [recipe, setRecipe] = useState({
@@ -161,7 +165,8 @@ const CreateRecipeForm = () => {
       API.createNewRecipe(recipe)
         .then((response) => {
           console.log(response.data);
-          // return <Redirect push to={{ pathname: response.data._id }} />;
+          setRecipeId(response.data._id);
+          setSubmitted(true);
         })
         .catch((err) => {
           console.log(err);
@@ -185,13 +190,24 @@ const CreateRecipeForm = () => {
           type="button"
           data-idx={idx}
           onClick={removeTag}
-          className="box-tag no-hover paddinghalf text-smaller"
+          className="box-tag no-hover no-focus paddinghalf text-smaller"
         >
           {tag}
         </button>
       </p>
     );
   });
+
+  if (recipeId !== "" && submitted) {
+    return (
+      <Redirect
+        push
+        to={{
+          pathname: `/recipe/${recipeId}`
+        }}
+      />
+    );
+  }
 
   return (
     <Fragment>
@@ -307,6 +323,7 @@ const CreateRecipeForm = () => {
             <h2 className="text-orange">Instructions</h2>
             {instructionSteps.map((val, idx) => {
               const instructionId = `instructionSteps[${idx}]`;
+
               return (
                 <div key={`instruction-${idx}`}>
                   <p className="bold fit-content padsideshalf border-bot-2-light">
@@ -361,7 +378,7 @@ const CreateRecipeForm = () => {
                 <p className="opacity-0 padright1 marginbot1">
                   <button
                     type="button"
-                    className="box-tag no-hover paddinghalf text-smaller"
+                    className="box-tag no-hover no-focus paddinghalf text-smaller"
                   >
                     M
                   </button>
