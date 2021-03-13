@@ -114,6 +114,23 @@ const Recipe = () => {
               })}
             </Fragment>
           </div>
+
+          {recipe.source ? (
+            <div className="container">
+              <p className="text-smaller">
+                <a
+                  className="light-orange"
+                  href={recipe.source}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Recipe Source
+                </a>
+              </p>
+            </div>
+          ) : (
+            <Fragment></Fragment>
+          )}
         </div>
       </div>
       <div className="container-fullwidth">

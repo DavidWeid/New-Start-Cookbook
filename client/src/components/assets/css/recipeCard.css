@@ -34,6 +34,10 @@
   .flip-card:hover .flip-card-inner {
     transform: rotateY(180deg);
   }
+
+  .flip-card:hover .flip-card-front {
+    z-index: 0;
+  }
 }
 
 .flip-card-front,

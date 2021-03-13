@@ -130,6 +130,14 @@
   align-items: flex-start;
 }
 
+.fullwidth {
+  width: 100%;
+}
+
+.fit-content {
+  width: fit-content;
+}
+
 /*  
 ----- Padding & Margin Properties -----
 */
@@ -379,6 +387,14 @@
   opacity: 0.85;
 }
 
+.opacity-0 {
+  opacity: 0;
+}
+
 .border-bot-2-dark {
   border-bottom: 2px solid var(--main-muted-dark-color);
+}
+
+.border-bot-2-light {
+  border-bottom: 2px solid var(--white);
 }

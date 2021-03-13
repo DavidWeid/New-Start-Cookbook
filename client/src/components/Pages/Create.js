@@ -14,7 +14,7 @@ const Create = () => {
 
       <div className="container-fullwidth--secondary-dark padtop2half padbot2half">
         <div className="recipe-page paddinghalf bg-muted-dark text-white more-rounded card-shadow-dark">
-          <div className="container container-create-form">
+          <div className="container container-create-form padbot1">
             <CreateRecipeForm />
           </div>
         </div>

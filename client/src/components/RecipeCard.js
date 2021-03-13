@@ -28,8 +28,8 @@ const RecipeCard = (props) => {
         </div>
         <div className="flip-card-back display-flex flex-direction-column justify-space-between">
           <h3 className="padtop1 padbot1">{description}</h3>
-          <p>
-            <Link className="light-orange" to={`./recipe/${_id}`}>
+          <p className="padtop1 padbot1">
+            <Link className="light-orange padding1" to={`./recipe/${_id}`}>
               View
             </Link>
           </p>

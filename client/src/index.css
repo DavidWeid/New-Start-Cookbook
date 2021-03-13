@@ -24,10 +24,14 @@ html {
   font-size: calc(0.95em + 0.75vw);
   /* minimum font-size is 16px (1rem) and maximum font size is 22px */
   font-size: min(max(1rem, 4vw), 22px);
-  line-height: 1.25;
+  line-height: 1.5;
   background-color: var(--white);
   color: var(--main-muted-dark-color);
   /* user-select: none; */
+}
+
+*::selection {
+  background: var(--main-muted-medium-color);
 }
 
 *,
@@ -53,7 +57,7 @@ select,
 textarea {
   font-family: inherit;
   font-size: inherit;
-  line-height: 1.25;
+  line-height: 1.5;
   margin: 0;
 }
 
@@ -97,6 +101,7 @@ a {
   transition: all 0.33s;
   border-bottom: 1px solid transparent;
   padding-bottom: 2px;
+  cursor: pointer;
 }
 
 a:hover {
@@ -158,10 +163,13 @@ button {
 
 button:focus {
   outline: none;
+  opacity: 0.5;
 }
 
 /* input element */
-input {
+input,
+textarea {
+  user-select: text;
   border: 1px solid var(--main-muted-dark-color);
   padding: 0.35rem 0.6rem;
   outline: none;
@@ -169,10 +177,7 @@ input {
   caret-color: var(--main-accent-orange-color);
 }
 
-input[type="text"]:focus {
+input[type="text"]:focus,
+textarea {
   border: 1px solid rgba(0, 0, 0, 0.25);
-}
-
-input.fullwidth {
-  width: 100%;
 }

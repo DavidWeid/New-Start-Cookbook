@@ -18,26 +18,60 @@
   flex-direction: column;
   align-items: center;
 }
+/* Ingredients */
 .flex-container-input-btn {
   display: flex;
   flex-wrap: wrap;
   justify-content: stretch;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
+  position: relative;
 }
 .flex-container-input-btn input.amount {
   width: 100%;
 }
 .flex-container-input-btn input.ingredient {
   flex-grow: 1;
-  margin-right: 12px;
+  padding-right: 3rem;
 }
 .flex-container-input-btn button {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: min-content;
+  height: min-content;
 }
-
 @media screen and (min-width: 768px) {
   .flex-container-input-btn {
     flex-wrap: nowrap;
   }
+  .flex-container-input-btn button {
+    position: unset;
+    width: min-content;
+    height: min-content;
+    margin-left: 16px;
+  }
+  .flex-container-input-btn input.ingredient {
+    padding-right: 0.6rem;
+  }
+}
+/* Instruction steps */
+.flex-container-textarea-btn {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: stretch;
+  margin-bottom: 16px;
+  position: relative;
+}
+.flex-container-textarea-btn textarea {
+  flex-grow: 1;
+  min-height: 155px;
+  padding-right: 3rem;
+}
+.flex-container-textarea-btn button {
+  position: absolute;
+  right: 0;
+  width: min-content;
+  height: min-content;
 }
 
 /* Recipe Page */
@@ -47,7 +81,7 @@
   margin: 0 auto;
 }
 
-@media screen and (min-width: 768) {
+@media screen and (min-width: 768px) {
   .recipe-page {
     width: 75%;
   }
@@ -106,6 +140,11 @@
 }
 .container-checkbox .checkmark > span {
   color: var(--main-muted-dark-color);
+  display: block;
+  width: 24px;
+  height: 24px;
+  position: relative;
+  top: -3px;
 }
 .container-checkbox input:checked ~ .checkmark > span {
   opacity: 0;

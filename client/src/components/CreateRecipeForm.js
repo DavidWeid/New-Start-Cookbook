@@ -3,6 +3,7 @@ import { useAuth0 } from "../react-auth0-wrapper";
 import API from "../utils/API";
 import { useForm } from "react-hook-form";
 import "./assets/css/createRecipeForm.css";
+// import { Redirect } from "react-router";
 
 const CreateRecipeForm = () => {
   /*** Require User and Form ***/
@@ -13,7 +14,11 @@ const CreateRecipeForm = () => {
   /*** Create and set our states ***/
 
   // useState for recipe (obj) - title and description
-  const [recipe, setRecipe] = useState({ title: "", description: "" });
+  const [recipe, setRecipe] = useState({
+    title: "",
+    description: "",
+    source: ""
+  });
   const handleRecipeChange = (e) =>
     setRecipe({ ...recipe, [e.target.name]: [e.target.value] });
 
@@ -156,6 +161,7 @@ const CreateRecipeForm = () => {
       API.createNewRecipe(recipe)
         .then((response) => {
           console.log(response.data);
+          // return <Redirect push to={{ pathname: response.data._id }} />;
         })
         .catch((err) => {
           console.log(err);
@@ -163,7 +169,7 @@ const CreateRecipeForm = () => {
 
       // Reset form / recipe state to blank
       setIngredients([{ ...blankIngredient }]);
-      setRecipe({ title: "", description: "" });
+      setRecipe({ title: "", description: "", source: "" });
       setInstructionSteps([""]);
       setRecipeTags([]);
     } else {
@@ -172,6 +178,21 @@ const CreateRecipeForm = () => {
     }
   };
 
+  const recipeTagDiv = recipeTags.map((tag, idx) => {
+    return (
+      <p key={idx} className="padright1 marginbot1">
+        <button
+          type="button"
+          data-idx={idx}
+          onClick={removeTag}
+          className="box-tag no-hover paddinghalf text-smaller"
+        >
+          {tag}
+        </button>
+      </p>
+    );
+  });
+
   return (
     <Fragment>
       {!isAuthenticated && <div>Please log in to create a recipe.</div>}
@@ -179,7 +200,7 @@ const CreateRecipeForm = () => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="container padbot2">
             <fieldset>
-              <label className="text-small" for="title">
+              <label className="text-small" htmlFor="title">
                 Title
               </label>
               <input
@@ -195,7 +216,7 @@ const CreateRecipeForm = () => {
             </fieldset>
 
             <fieldset>
-              <label className="text-small" for="description">
+              <label className="text-small" htmlFor="description">
                 Description
               </label>
               <input
@@ -207,6 +228,22 @@ const CreateRecipeForm = () => {
                 value={recipe.description}
                 onChange={handleRecipeChange}
                 ref={register({ required: true })}
+              />
+            </fieldset>
+
+            <fieldset>
+              <label className="text-small" htmlFor="title">
+                Source Link (Optional)
+              </label>
+              <input
+                className="fullwidth"
+                type="text"
+                placeholder="Source Link (Optional)"
+                name="source"
+                id="source"
+                value={recipe.source}
+                onChange={handleRecipeChange}
+                ref={register()}
               />
             </fieldset>
           </div>
@@ -246,6 +283,7 @@ const CreateRecipeForm = () => {
                   />
 
                   <button
+                    type="button"
                     className="btn-muted-light rounded text-smaller"
                     onClick={removeIngredient}
                     data-idx={idx}
@@ -256,7 +294,11 @@ const CreateRecipeForm = () => {
               );
             })}
 
-            <button className="btn-orange rounded" onClick={addIngredient}>
+            <button
+              type="button"
+              className="btn-orange rounded"
+              onClick={addIngredient}
+            >
               Add Ingredient
             </button>
           </div>
@@ -267,55 +309,71 @@ const CreateRecipeForm = () => {
               const instructionId = `instructionSteps[${idx}]`;
               return (
                 <div key={`instruction-${idx}`}>
-                  <span>{idx + 1}</span>
-                  <input
-                    type="text"
-                    name={instructionId}
-                    data-idx={idx}
-                    placeholder="Instruction Step"
-                    id={instructionId}
-                    className="instructionStep"
-                    value={instructionSteps[idx]}
-                    onChange={handleInstructionStepChange}
-                    ref={register()}
-                  />
+                  <p className="bold fit-content padsideshalf border-bot-2-light">
+                    {idx + 1}
+                  </p>
+                  <div className="flex-container-textarea-btn">
+                    <textarea
+                      type="text"
+                      name={instructionId}
+                      data-idx={idx}
+                      placeholder="Instruction Step"
+                      id={instructionId}
+                      className="instructionStep"
+                      value={instructionSteps[idx]}
+                      onChange={handleInstructionStepChange}
+                      ref={register()}
+                    ></textarea>
 
-                  <button
-                    className="btn-muted-light rounded text-smaller"
-                    onClick={removeInstruction}
-                    data-idx={idx}
-                  >
-                    Remove Instruction
-                  </button>
+                    <button
+                      type="button"
+                      className="btn-muted-light rounded text-smaller"
+                      onClick={removeInstruction}
+                      data-idx={idx}
+                    >
+                      X
+                    </button>
+                  </div>
                 </div>
               );
             })}
 
-            <button className="btn-orange rounded" onClick={addInstructionStep}>
+            <button
+              type="button"
+              className="btn-orange rounded"
+              onClick={addInstructionStep}
+            >
               Add Instruction
             </button>
           </div>
 
           <div className="container padbot2">
             <input
+              className="fullwidth"
               onKeyUp={(e) => onKeyUp(e)}
               type="text"
-              placeholder="Add comma-separated recipe tags."
+              placeholder="Add comma-separated recipe tags"
             />
 
             <div className="padtop1 display-flex flex-wrap">
-              {recipeTags.map((tag, idx) => {
-                return (
-                  <p key={idx} data-idx={idx} onClick={removeTag}>
-                    {tag}
-                  </p>
-                );
-              })}
+              {recipeTags.length === 0 ? (
+                // Placeholder tag, hidden, when no tags
+                <p className="opacity-0 padright1 marginbot1">
+                  <button
+                    type="button"
+                    className="box-tag no-hover paddinghalf text-smaller"
+                  >
+                    M
+                  </button>
+                </p>
+              ) : (
+                recipeTagDiv
+              )}
             </div>
           </div>
 
           <button className="btn-orange rounded" type="submit" value="Submit">
-            Submit
+            Create Recipe
           </button>
         </form>
       )}

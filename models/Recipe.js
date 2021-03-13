@@ -30,6 +30,10 @@ const RecipeSchema = new Schema({
     type: Array,
     required: true
   },
+  source: {
+    type: String,
+    required: false
+  },
   tags: {
     type: Array,
     required: false
