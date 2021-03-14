@@ -1,10 +1,12 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { lazy, Fragment, useState, useEffect, Suspense } from "react";
 import { useAuth0 } from "../../react-auth0-wrapper";
 import API from "../../utils/API";
 import { Link } from "react-router-dom";
-import RecipeCard from "../RecipeCard.js";
-import "../assets/css/pages.css";
 import logo from "../assets/img/new-start-cookbook.svg";
+import "../assets/css/pages.css";
+
+const RecipeCard = lazy(() => import("../RecipeCard"));
+const renderLoader = () => <p>Loading</p>;
 
 const Home = () => {
   const { isAuthenticated, user } = useAuth0();
@@ -29,7 +31,9 @@ const Home = () => {
   const displayRecipe = recipes.map((recipe) => {
     return (
       <div key={recipe._id} className="padding1 flip-card-container">
-        <RecipeCard recipe={recipe} />
+        <Suspense fallback={renderLoader()}>
+          <RecipeCard recipe={recipe} />
+        </Suspense>
       </div>
     );
   });
@@ -67,7 +71,7 @@ const Home = () => {
                 <img
                   className="homepage-logo"
                   src={logo}
-                  alt="New Start Cook Book - A Genius Cook with a Good Book"
+                  alt="New Start Cookbook - A Genius Cook with a Good Book"
                   width="1333"
                   height="1000"
                   loading="eager"

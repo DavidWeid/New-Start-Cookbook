@@ -1,6 +1,5 @@
 import React from "react";
 import CreateRecipeForm from "../CreateRecipeForm";
-// import DataAPI from "../DataAPI";
 import "../assets/css/pages.css";
 
 const Create = () => {

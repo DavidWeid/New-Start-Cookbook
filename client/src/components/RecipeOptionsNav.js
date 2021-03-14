@@ -1,7 +1,8 @@
-import React, { Fragment, useState } from "react";
+import React, { lazy, Fragment, useState } from "react";
 import API from "../utils/API";
 import { useHistory } from "react-router-dom";
-import ConfirmationBox from "./ConfirmationBox";
+
+const ConfirmationBox = lazy(() => import("./ConfirmationBox"));
 
 const RecipeOptionsNav = (props) => {
   const recipe = props.recipe;

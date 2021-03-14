@@ -115,7 +115,8 @@ const CreateRecipeForm = () => {
 
   // Add recipe tags from single input - add new tags on "," or "enter"
   const onKeyUp = (e) => {
-    if (e.which === 188 || e.which === 13) {
+    // if (e.which === 188 || e.which === 13) {
+    if (e.key === "," || e.key === "Enter") {
       let input = e.target.value.trim().split(",");
       if (input.length === 0 || input[0] === "") return;
 

@@ -1,7 +1,7 @@
 {
   "name": "cook-book",
   "version": "1.0.0",
-  "description": "A MERN Stack Cook Book Application",
+  "description": "A MERN Stack Cookbook Application",
   "main": "server.js",
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
@@ -21,11 +21,12 @@
   },
   "dependencies": {
     "body-parser": "^1.19.0",
+    "compression": "^1.7.4",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-jwt": "^6.0.0",
     "if-env": "^1.0.4",
-    "jwks-rsa": "^1.12.1",
+    "jwks-rsa": "^1.12.3",
     "mongoose": "^5.9.12",
     "morgan": "^1.10.0"
   }
