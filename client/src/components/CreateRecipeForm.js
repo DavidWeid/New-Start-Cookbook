@@ -123,7 +123,12 @@ const CreateRecipeForm = () => {
       const newTag = input[0];
       setRecipeTags((recipeTags) => [...recipeTags, newTag]);
       e.target.value = "";
-    }
+    } 
+    // else if (!e.key || e.which === 229) {
+    //   const ss = this.selectionStart -1;
+    //   const ssv = ss || 0;
+    //   const char = this.value.subs
+    // }
   };
 
   const removeTag = (e) => {

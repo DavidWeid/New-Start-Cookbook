@@ -107,7 +107,7 @@ const Recipe = () => {
                     {instructionStep}
                     <input type="checkbox"></input>
                     <span className="checkmark">
-                      <span>&nbsp;{idx + 1}</span>
+                      <span>{idx + 1}</span>
                     </span>
                   </label>
                 );

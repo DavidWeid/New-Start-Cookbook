@@ -140,11 +140,13 @@
 }
 .container-checkbox .checkmark > span {
   color: var(--main-muted-dark-color);
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 24px;
   height: 24px;
   position: relative;
-  top: -3px;
+  font-size: 18px;
 }
 .container-checkbox input:checked ~ .checkmark > span {
   opacity: 0;
